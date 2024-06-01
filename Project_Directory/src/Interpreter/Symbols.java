@@ -1,0 +1,14 @@
+package Interpreter;
+
+public enum Symbols {
+	INVALID_CHAR, 
+	NO_SYMBOL, 
+	NEW, DEL , MV, MVOFF , SCALE , GRP ,LS , ALL , GROUPS , UNGRP ,  AREA , PERIMETER  , 
+	OPEN_PARENTESIS,
+	CLOSE_PARENTESIS,
+	COMMA,
+	CIRCLE , RECTANGLE , IMG ,  
+	NUMBER,
+	PATH,
+	EOF
+}
