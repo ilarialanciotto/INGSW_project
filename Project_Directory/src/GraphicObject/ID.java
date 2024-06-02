@@ -46,7 +46,13 @@ public class ID {
 	
 	public GraphicObject getObject(int idObj) {
 		GraphicObject res=MapGo.get(idObj);
-		if(remove) MapGo.remove(idObj);
+		if(remove) {
+			if(res.getGroup().size()>0){
+				for(Integer key: MapGroup.keySet())
+					MapGroup.get(key).remove(res);
+			}
+			MapGo.remove(idObj);
+		}
 		return res;
 	}
 	
@@ -54,8 +60,11 @@ public class ID {
 		LinkedList <GraphicObject> Group=MapGroup.get(idGroup);
 		if(remove) {
 			for (GraphicObject Go: Group) {
-				for (Integer key : Go.getGroup().keySet())
-					if(Go.getGroup().get(key)==idGroup) Go.getGroup().remove(key);
+				MapGo.remove(Go.getID());
+				if(Go.getGroup().size()>0)
+					for(Integer key: Go.getGroup().keySet())
+						MapGroup.get(Go.getGroup().get(key)).remove(Go);
+				Go.getGroup().clear();
 			}
 			MapGroup.remove(idGroup);
 		}

@@ -1,5 +1,17 @@
 package Main;
 
+import GraphicObject.CircleObject;
+import GraphicObject.ImageObject;
+import GraphicObject.RectangleObject;
+import GraphicView.*;
+import Interpreter.CommandParser;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.StringReader;
+
 public class MiniCAD {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
