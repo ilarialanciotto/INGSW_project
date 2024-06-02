@@ -13,13 +13,13 @@ public class Create implements Cmd {
 		this.typecnstruct=typecnstruct;
 		this.pos=pos;
 	}
-	
+
 	@Override
 	public void interpret(GraphicObjectPanel gpanel) {
 		typecnstruct.interpret(gpanel);
 		GraphicObject go=gpanel.getGraphicObjectAt(new Point2D.Float(0,0));
 		go.moveTo(pos.getX(), pos.getY());
 		gpanel.repaint();
-		System.out.println("created object " + go.getType() + " id: " + go.getID());		
+		System.out.println("created object " + go.getType() + " id: " + go.getID());
 	}
 }

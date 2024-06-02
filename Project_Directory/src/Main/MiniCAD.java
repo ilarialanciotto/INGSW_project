@@ -5,7 +5,6 @@ import GraphicObject.ImageObject;
 import GraphicObject.RectangleObject;
 import GraphicView.*;
 import Interpreter.CommandParser;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,8 +13,10 @@ import java.io.StringReader;
 
 public class MiniCAD {
     public static void main(String[] args) {
+
         JFrame frame = new JFrame();
         frame.setTitle("MiniCAD");
+        frame.setPreferredSize(new Dimension(500,600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         final GraphicObjectPanel gpanel=new GraphicObjectPanel();
@@ -34,6 +35,7 @@ public class MiniCAD {
 
         JTextField textField = new JTextField();
         frame.add(textField, BorderLayout.SOUTH);
+
         textField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

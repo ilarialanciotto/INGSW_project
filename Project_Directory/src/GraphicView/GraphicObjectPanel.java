@@ -8,14 +8,12 @@ import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JComponent;
-import javax.swing.JTextArea;
-
 import GraphicObject.GraphicEvent;
 import GraphicObject.*;
 
+
 public class GraphicObjectPanel extends JComponent implements GraphicObjectListener {
 
-	private JTextArea textArea=new JTextArea();
 	private static final long serialVersionUID = 8993548105090978185L;
 	private final List<GraphicObject> objects = new LinkedList<>();
 
@@ -29,7 +27,6 @@ public class GraphicObjectPanel extends JComponent implements GraphicObjectListe
 		revalidate();
 	}
 
-	
 	public GraphicObject getGraphicObjectAt(Point2D p) {
 		for (GraphicObject g : objects) {
 			if (g.contains(p))

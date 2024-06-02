@@ -4,14 +4,12 @@ import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
-
-import java.util.Collection;
 import java.util.LinkedList;
 
 public class Remove implements Cmd {
 
 	private int idObj;
-	
+
 	public Remove(int idObj) {
 		this.idObj=idObj;
 	}
@@ -36,6 +34,5 @@ public class Remove implements Cmd {
 			System.out.println("deleted " + go.getType() + " id= " + idObj );
 			gpanel.remove(go);
 		}
-
 	}
 }
