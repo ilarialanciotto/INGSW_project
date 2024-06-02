@@ -68,7 +68,7 @@ public class LexicalAnalyzer {
 				break;
 			case StreamTokenizer.TT_NUMBER:
 				sb.append(input.nval + " ");
-				symbol=Symbols.NUMBER;
+				symbol = Symbols.NUMBER;
 				break;
 			case '(':
 				sb.append("("  + " ");

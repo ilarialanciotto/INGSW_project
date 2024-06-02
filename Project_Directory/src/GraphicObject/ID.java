@@ -34,7 +34,6 @@ public class ID {
 	public LinkedList<GraphicObject> getType(String type){
 		TypeList=new LinkedList<>();
 		for(GraphicObject go: MapGo.values()) if(go.getType().equalsIgnoreCase(type)) TypeList.add(go);
-		System.out.println(TypeList.toString());
 		return TypeList;
 	}
 	
