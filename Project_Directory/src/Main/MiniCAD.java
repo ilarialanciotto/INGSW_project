@@ -29,7 +29,7 @@ public class MiniCAD {
         JTextArea textArea=new JTextArea();
         textArea.setPreferredSize(new Dimension(500,100));
         textArea.setEnabled(false);
-        textArea.setDisabledTextColor(new Color(0));
+        textArea.setDisabledTextColor(new Color(0xFF000000, true));
         frame.add(textArea, BorderLayout.CENTER);
 
         JTextField textField = new JTextField();

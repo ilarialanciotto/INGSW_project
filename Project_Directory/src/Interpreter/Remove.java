@@ -22,13 +22,13 @@ public class Remove implements Cmd {
 		if(go==null){
 			if(new ID(false).getGroup(idObj)==null) throw new MyException (" object or group not found");
 			else {
-				LinkedList <GraphicObject> lisGO= new ID(false).getGroup(idObj);
-				for (GraphicObject GO : lisGO) {
-					int idObj=GO.getID();
-					System.out.println("deleted " + GO.getType() + " id= " + idObj );
+				LinkedList <GraphicObject> lisGO=  new ID(false).getGroup(idObj) ;
+				LinkedList <GraphicObject> copy=new LinkedList <>(lisGO);
+				for (GraphicObject GO : copy) {
+					System.out.println("deleted " + GO.getType() + " id= " + GO.getID());
+					new ID(true).getObject(GO.getID());
 					gpanel.remove(GO);
 				}
-				new ID(true).getGroup(idObj);
 			}
 		}
 		else {

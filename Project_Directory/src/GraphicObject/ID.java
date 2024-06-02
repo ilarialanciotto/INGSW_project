@@ -60,11 +60,8 @@ public class ID {
 		LinkedList <GraphicObject> Group=MapGroup.get(idGroup);
 		if(remove) {
 			for (GraphicObject Go: Group) {
-				MapGo.remove(Go.getID());
-				if(Go.getGroup().size()>0)
-					for(Integer key: Go.getGroup().keySet())
-						MapGroup.get(Go.getGroup().get(key)).remove(Go);
-				Go.getGroup().clear();
+				for(Integer key: Go.getGroup().keySet())
+					if(Go.getGroup().get(key)==idGroup) Group.remove(key);
 			}
 			MapGroup.remove(idGroup);
 		}
