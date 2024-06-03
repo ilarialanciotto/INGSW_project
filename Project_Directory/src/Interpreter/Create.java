@@ -29,7 +29,6 @@ public class Create implements Cmd {
 
 	@Override
 	public void undo() {
-		gpanel.remove(go);
-		gpanel.repaint();
+		new Remove(go.getID()).interpret(gpanel);
 	}
 }

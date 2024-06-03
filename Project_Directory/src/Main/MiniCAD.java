@@ -6,7 +6,6 @@ import GraphicObject.RectangleObject;
 import GraphicView.*;
 import Interpreter.CommandParser;
 import Memento.Caretaker;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

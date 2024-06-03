@@ -72,4 +72,11 @@ public class ID {
 			if (MapGroup.get(ID).equals(listG)) return ID;
 		return -1;
 	}
+
+    public void addObject(int idObj,GraphicObject go,Map<Integer,Integer> Group) {
+		MapGo.put(idObj,go);
+		if(Group.size()>0)
+			for (Integer key: Group.keySet())
+				MapGroup.get(Group.get(key)).add(go);
+    }
 }
