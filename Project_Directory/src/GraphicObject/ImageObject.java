@@ -76,6 +76,14 @@ public final class ImageObject extends AbstractGraphicObject {
 	}
 
 	@Override
+	public void scaleMinus(float factor) {
+		if (factor <= 0)
+			throw new IllegalArgumentException();
+		this.factor /= factor;
+		notifyListeners(new GraphicEvent(this));
+	}
+
+	@Override
 	public Dimension2D getDimension() {
 		Dimension dim = new Dimension();
 		dim.setSize(factor * image.getWidth(null),

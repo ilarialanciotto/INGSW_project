@@ -44,4 +44,5 @@ public interface GraphicObject {
 	
 	Map<Integer,Integer> getGroup();
 
+	void scaleMinus(float factor);
 }

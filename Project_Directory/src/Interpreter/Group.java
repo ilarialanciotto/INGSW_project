@@ -10,7 +10,8 @@ public class Group implements Cmd {
 	
 	private LinkedList<GraphicObject>listGraphicObject;
 	private int idGroup;
-	
+	private GraphicObjectPanel gpanel;
+
 	public Group(LinkedList<Integer> listID) {
 		listGraphicObject=new LinkedList<>();
 		for(Integer id: listID) {
@@ -27,8 +28,14 @@ public class Group implements Cmd {
 	
 	@Override
 	public void interpret(GraphicObjectPanel gpanel) {
+		this.gpanel=gpanel;
 		for (GraphicObject go: listGraphicObject) idGroup=go.getIDGroup();
 		System.out.println("Created group id: " + idGroup);
+		gpanel.setState(this);
 	}
 
+	@Override
+	public void undo() {
+		new Ungroup(idGroup);
+	}
 }

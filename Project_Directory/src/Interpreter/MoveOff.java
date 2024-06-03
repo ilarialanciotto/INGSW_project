@@ -32,6 +32,7 @@ public class MoveOff implements Cmd {
 				goG.moveTo(newPos.getX()+x, newPos.getY()+y);
 			}
 		else throw new MyException("object or group not fount");
+		gpanel.setState(this);
 	}
 
 

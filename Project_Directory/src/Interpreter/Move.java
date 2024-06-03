@@ -23,5 +23,6 @@ public class Move implements Cmd {
 			if(new ID(false).getGroup(ID)==null ) throw new MyException("object or group not fount");
 			else for (GraphicObject goG : new ID(false).getGroup(ID)) goG.moveTo(newPos.getX(), newPos.getY());
 		else  go.moveTo(newPos.getX(), newPos.getY());
+		gpanel.setState(this);
 	}
 }

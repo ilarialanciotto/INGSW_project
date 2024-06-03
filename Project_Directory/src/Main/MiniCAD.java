@@ -5,6 +5,8 @@ import GraphicObject.ImageObject;
 import GraphicObject.RectangleObject;
 import GraphicView.*;
 import Interpreter.CommandParser;
+import Memento.Caretaker;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +23,20 @@ public class MiniCAD {
 
         final GraphicObjectPanel gpanel=new GraphicObjectPanel();
         gpanel.setPreferredSize(new Dimension(500, 400));
-        frame.add(gpanel,BorderLayout.NORTH);
+        JToolBar toolbar = new JToolBar();
+        toolbar.setFloatable(false);
+        JButton undoButt = new JButton("Undo");
+        JButton redoButt = new JButton("Redo");
+
+        Caretaker caretaker=new Caretaker(gpanel);
+        JPanel panel=new JPanel();
+
+        toolbar.add(undoButt);
+        toolbar.add(redoButt);
+
+        panel.add(toolbar,BorderLayout.NORTH);
+        panel.add(gpanel,BorderLayout.CENTER);
+        frame.add(panel, BorderLayout.NORTH);
 
         GraphicObjectViewFactory.FACTORY.installView(RectangleObject.class, new RectangleObjectView());
         GraphicObjectViewFactory.FACTORY.installView(CircleObject.class, new CircleObjectView());
@@ -30,6 +45,7 @@ public class MiniCAD {
         JTextArea textArea=new JTextArea();
         textArea.setPreferredSize(new Dimension(500,100));
         textArea.setEnabled(false);
+
         textArea.setDisabledTextColor(new Color(0xFF000000, true));
         frame.add(textArea, BorderLayout.CENTER);
 
@@ -43,7 +59,7 @@ public class MiniCAD {
                 StringReader sr = new StringReader(textField.getText());
                 try {
                     CommandParser cmd= new CommandParser(sr);
-                    cmd.getCommand().interpret(gpanel);
+                    caretaker.executeCommand(cmd.getCommand());
                     textField.setText("");
                 }catch(RuntimeException error) {
                     JOptionPane.showMessageDialog(gpanel, error.getMessage());
@@ -52,6 +68,9 @@ public class MiniCAD {
                 }
             }
         });
+
+        undoButt.addActionListener(evt -> caretaker.undo());
+        redoButt.addActionListener(evt -> caretaker.redo());
 
         frame.pack();
         frame.setVisible(true);

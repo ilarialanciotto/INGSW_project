@@ -107,4 +107,12 @@ public final class RectangleObject extends AbstractGraphicObject {
 
 	@Override
 	public Map<Integer,Integer> getGroup() { return MapGroup; }
+
+	@Override
+	public void scaleMinus(float factor) {
+		if (factor <= 0)
+			throw new IllegalArgumentException();
+		dim.setSize(dim.getWidth() / factor, dim.getHeight() / factor);
+		notifyListeners(new GraphicEvent(this));
+	}
 }

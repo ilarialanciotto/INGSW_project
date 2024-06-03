@@ -52,6 +52,14 @@ public final  class CircleObject extends AbstractGraphicObject {
 	}
 
 	@Override
+	public void scaleMinus(float factor) {
+		if (factor <= 0)
+			throw new IllegalArgumentException();
+		radius /= factor;
+		notifyListeners(new GraphicEvent(this));
+	}
+
+	@Override
 	public Dimension2D getDimension() {
 		Dimension d = new Dimension();
 		d.setSize(2 * radius, 2 * radius);

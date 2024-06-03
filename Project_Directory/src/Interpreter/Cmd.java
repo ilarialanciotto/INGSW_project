@@ -6,5 +6,6 @@ public interface Cmd {
 
 	public void interpret(GraphicObjectPanel gpanel);
 
+    default void undo(){};
 }
 

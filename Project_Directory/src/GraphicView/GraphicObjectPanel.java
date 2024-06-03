@@ -10,10 +10,12 @@ import java.util.List;
 import javax.swing.JComponent;
 import GraphicObject.GraphicEvent;
 import GraphicObject.*;
-
+import Interpreter.Cmd;
+import Memento.Memento;
 
 public class GraphicObjectPanel extends JComponent implements GraphicObjectListener {
 
+	private Cmd state;
 	private static final long serialVersionUID = 8993548105090978185L;
 	private final List<GraphicObject> objects = new LinkedList<>();
 
@@ -72,5 +74,21 @@ public class GraphicObjectPanel extends JComponent implements GraphicObjectListe
 			repaint();
 			go.removeGraphicObjectListener(this);
 		}
+	}
+
+	public void setState(Cmd state) {
+		this.state = state;
+	}
+
+	public Cmd getState() {
+		return state;
+	}
+
+	public Memento saveToMemento() {
+		return new Memento(state);
+	}
+
+	public void restoreFromMemento(Memento memento) {
+		state = memento.getState();
 	}
 }
