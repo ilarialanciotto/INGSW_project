@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.StringReader;
 
 public class MiniCAD {
+
     public static void main(String[] args) {
 
         JFrame frame = new JFrame();
@@ -59,6 +60,7 @@ public class MiniCAD {
                 try {
                     CommandParser cmd= new CommandParser(sr);
                     caretaker.executeCommand(cmd.getCommand());
+                    System.out.println(gpanel.getObjectCount());
                     textField.setText("");
                 }catch(RuntimeException error) {
                     JOptionPane.showMessageDialog(gpanel, error.getMessage());

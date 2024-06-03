@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
+import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JComponent;
@@ -15,6 +16,7 @@ import Memento.Memento;
 
 public class GraphicObjectPanel extends JComponent implements GraphicObjectListener {
 
+	public static int ObjectCount;
 	private Cmd state;
 	private static final long serialVersionUID = 8993548105090978185L;
 	private final List<GraphicObject> objects = new LinkedList<>();
@@ -64,6 +66,7 @@ public class GraphicObjectPanel extends JComponent implements GraphicObjectListe
 	}
 
 	public void add(GraphicObject go) {
+		ObjectCount++;
 		objects.add(go);
 		go.addGraphicObjectListener(this);
 		repaint();
@@ -71,6 +74,7 @@ public class GraphicObjectPanel extends JComponent implements GraphicObjectListe
 
 	public void remove(GraphicObject go) {
 		if (objects.remove(go)) {
+			ObjectCount--;
 			repaint();
 			go.removeGraphicObjectListener(this);
 		}
@@ -91,4 +95,6 @@ public class GraphicObjectPanel extends JComponent implements GraphicObjectListe
 	public void restoreFromMemento(Memento memento) {
 		state = memento.getState();
 	}
+
+	public int getObjectCount() { return ObjectCount; }
 }

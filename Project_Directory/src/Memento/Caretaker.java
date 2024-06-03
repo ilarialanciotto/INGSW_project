@@ -18,9 +18,6 @@ public class Caretaker {
     }
 
     public void executeCommand(Cmd command) {
-        System.out.println("Executing command: " + command);
-        System.out.println("stack undo: " + undoStack);
-        System.out.println("stack redo: " + redoStack);
         Memento memento = gpanel.saveToMemento();
         command.interpret(gpanel);
         undoStack.push(memento);
@@ -31,7 +28,6 @@ public class Caretaker {
 
     public void undo() {
         if (!undoStack.isEmpty()) {
-            System.out.println("stack undo: " + undoStack);
             Memento memento = undoStack.pop();
             Cmd command = commandStack.pop();
             redoStack.push(gpanel.saveToMemento());
@@ -42,7 +38,6 @@ public class Caretaker {
     }
 
     public void redo() {
-        System.out.println("stack redo: " + redoStack);
         if (!redoStack.isEmpty()) {
             Memento memento = redoStack.pop();
             Cmd command = redoCommandStack.pop();
