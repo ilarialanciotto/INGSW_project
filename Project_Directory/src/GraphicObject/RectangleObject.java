@@ -10,7 +10,7 @@ import java.util.TreeMap;
 public final class RectangleObject extends AbstractGraphicObject {
 
 	private Point2D position;
-	private final ID Id=new ID(this);;
+	private int Id;
 	private Dimension2D dim;
 	private float w,h;
 	private int IdGroup=-1;
@@ -25,6 +25,7 @@ public final class RectangleObject extends AbstractGraphicObject {
 		this.w=w;
 		this.h=h;
 		position = new Point2D.Double(pos.getX(), pos.getY());
+		Id=new ID(this).getID(this);
 	}
 	
 	@Override
@@ -85,7 +86,7 @@ public final class RectangleObject extends AbstractGraphicObject {
 	}
 
 	@Override
-	public int getID() { return Id.getID(this); }
+	public int getID() { return Id; }
 
 	@Override
 	public String Information() {
@@ -107,6 +108,21 @@ public final class RectangleObject extends AbstractGraphicObject {
 
 	@Override
 	public Map<Integer,Integer> getGroup() { return MapGroup; }
+
+	@Override
+	public void setID(int id){
+		this.Id=id;
+	}
+
+	@Override
+	public GraphicObject copy() {
+		GraphicObject G=this ;
+		G.setID(Id);
+		G.setGroupID(getIDGroup());
+		for (Integer key : MapGroup.keySet())
+			G.getGroup().put(key, MapGroup.get(key));
+		return G;
+	}
 
 	@Override
 	public void scaleMinus(float factor) {

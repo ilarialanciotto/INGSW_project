@@ -11,7 +11,7 @@ public final  class CircleObject extends AbstractGraphicObject {
 
 	private Point2D position;
 	private float radius;
-	private final ID Id=new ID(this);
+	private int Id;
 	private int GroupID=-1;
 	private Map <Integer,Integer>MapGroup=new TreeMap<>();
 	private int i=0;
@@ -21,6 +21,7 @@ public final  class CircleObject extends AbstractGraphicObject {
 			throw new IllegalArgumentException();
 		position = new Point2D.Double(pos.getX(), pos.getY());
 		radius = r;
+		Id=new ID(this).getID(this);
 	}
 	
 	@Override
@@ -59,11 +60,26 @@ public final  class CircleObject extends AbstractGraphicObject {
 		notifyListeners(new GraphicEvent(this));
 	}
 
+
 	@Override
 	public Dimension2D getDimension() {
 		Dimension d = new Dimension();
 		d.setSize(2 * radius, 2 * radius);
 		return d;
+	}
+
+	public void setID(int id){
+		this.Id=id;
+	}
+
+	@Override
+	public GraphicObject copy() {
+		GraphicObject G=this ;
+		G.setID(Id);
+		G.setGroupID(getIDGroup());
+		for (Integer key : MapGroup.keySet())
+			G.getGroup().put(key, MapGroup.get(key));
+		return G;
 	}
 
 	@Override
@@ -90,7 +106,7 @@ public final  class CircleObject extends AbstractGraphicObject {
 
 	@Override
 	public int getID() {
-		return Id.getID(this);
+		return Id;
 	}
 
 	@Override

@@ -45,4 +45,8 @@ public interface GraphicObject {
 	Map<Integer,Integer> getGroup();
 
 	void scaleMinus(float factor);
+
+	GraphicObject copy();
+
+	void setID(int id);
 }

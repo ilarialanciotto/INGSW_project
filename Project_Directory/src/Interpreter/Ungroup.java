@@ -10,7 +10,7 @@ public class Ungroup implements Cmd {
 
 	private int GroupID;
 	private GraphicObjectPanel gpanel;
-	private LinkedList<Integer> listIDgo;
+	private LinkedList<Integer> listIDgo=new LinkedList<>();
 
 	public Ungroup(int GroupID) {
 		this.GroupID=GroupID;
@@ -22,6 +22,7 @@ public class Ungroup implements Cmd {
 		for (GraphicObject Go: new ID(false).getGroup(GroupID)){
 			listIDgo.add(Go.getID());
 		}
+		System.out.println(listIDgo);
 	    new ID(true).getGroup(GroupID);
 		System.out.println("Deleted group id: " + GroupID);
 		gpanel.setState(this);

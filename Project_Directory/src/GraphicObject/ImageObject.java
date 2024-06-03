@@ -17,7 +17,7 @@ public final class ImageObject extends AbstractGraphicObject {
 	private double factor = 1.0;
 	private final Image image;
 	private Point2D position;
-	private final ID Id=new ID(this);
+	private int Id;
 	private int IdGroup=-1;
 	private Map <Integer,Integer>MapGroup=new TreeMap<>();
 	private int i=0;
@@ -29,6 +29,7 @@ public final class ImageObject extends AbstractGraphicObject {
 	public ImageObject(ImageIcon img, Point2D pos) {
 		position = new Point2D.Double(pos.getX(), pos.getY());
 		image = img.getImage();
+		Id=new ID(this).getID(this);
 	}
 	
 	@Override
@@ -97,7 +98,7 @@ public final class ImageObject extends AbstractGraphicObject {
 	}
 
 	@Override
-	public int getID() { return Id.getID(this); }
+	public int getID() { return Id; }
 
 	@Override
 	public String Information() {
@@ -105,6 +106,20 @@ public final class ImageObject extends AbstractGraphicObject {
 	               "ID: " + getID() + "\n" + 
 	               "Dimension: " + getDimension().getWidth() + "," + getDimension().getHeight() + "\n" + 
 	               "position: " +  getPosition().getX() + "," + getPosition().getY();
+	}
+
+	public void setID(int id){
+		this.Id=id;
+	}
+
+	@Override
+	public GraphicObject copy() {
+		GraphicObject G=this ;
+		G.setID(Id);
+		G.setGroupID(getIDGroup());
+		for (Integer key : MapGroup.keySet())
+			G.getGroup().put(key, MapGroup.get(key));
+		return G;
 	}
 
 	@Override

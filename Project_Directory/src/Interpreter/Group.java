@@ -36,6 +36,6 @@ public class Group implements Cmd {
 
 	@Override
 	public void undo() {
-		new Ungroup(idGroup);
+		new Ungroup(idGroup).interpret(gpanel);
 	}
 }

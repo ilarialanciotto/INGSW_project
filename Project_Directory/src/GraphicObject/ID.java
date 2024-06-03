@@ -8,10 +8,11 @@ public class ID {
 	
 	private static int id=0;
 	private boolean remove=false;
+
 	private static Map<Integer, GraphicObject> MapGo=new TreeMap<>();
 	private static Map<Integer,LinkedList<GraphicObject>> MapGroup=new TreeMap<>();
 	private static LinkedList<GraphicObject> TypeList;
-	
+
 	public ID(GraphicObject go) {
 		MapGo.put(id, go);
 		id++;
@@ -73,10 +74,17 @@ public class ID {
 		return -1;
 	}
 
-    public void addObject(int idObj,GraphicObject go,Map<Integer,Integer> Group) {
-		MapGo.put(idObj,go);
-		if(Group.size()>0)
-			for (Integer key: Group.keySet())
-				MapGroup.get(Group.get(key)).add(go);
-    }
+	public void add(GraphicObject go) {
+		System.out.println(go);
+		MapGo.put(go.getID(),go);
+			if(go.getGroup().size()>0)
+				for(Integer key: go.getGroup().keySet())
+					if(go.getGroup().get(key)!=-1){
+						System.out.println(MapGroup.get(key)+ " " +go.getGroup());
+						LinkedList<GraphicObject> ListGo=new LinkedList<>();
+						ListGo.add(go);
+						if(MapGroup.get(go.getGroup().get(key))==null)  MapGroup.put(go.getGroup().get(key),ListGo);
+						else MapGroup.get(go.getGroup().get(key)).add(go);
+					}
+	}
 }
