@@ -2,6 +2,7 @@ package Test.Java;
 
 import static org.junit.Assert.*;
 
+import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
 import Interpreter.*;
 import Memento.Caretaker;
@@ -74,6 +75,7 @@ public class MainTest {
             int count=gpanel.getObjectCount();
             caretaker.executeCommand(cmd.getCommand());
             assertEquals(count+1,gpanel.getObjectCount());
+            assertEquals(gpanel.getObjectCount(),new ID(false).getAllObject().size());
         }
 
         @DisplayName("Perimeter command test")

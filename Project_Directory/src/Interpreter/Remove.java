@@ -4,11 +4,13 @@ import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
-
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
+
+// controllare perche quando faccio del di un ogetto e poi faccio undo lo reinserisce 2 volte nel gruppo che aveva
+// e di conseguenza quando faccio movoff non mi trova gli oggetti del gruppo
+// e di conseguenza mi da problemi quando elimino il gruppo
 
 public class Remove implements Cmd {
 

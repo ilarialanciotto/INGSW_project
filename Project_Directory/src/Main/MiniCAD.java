@@ -60,7 +60,6 @@ public class MiniCAD {
                 try {
                     CommandParser cmd= new CommandParser(sr);
                     caretaker.executeCommand(cmd.getCommand());
-                    System.out.println(gpanel.getObjectCount());
                     textField.setText("");
                 }catch(RuntimeException error) {
                     JOptionPane.showMessageDialog(gpanel, error.getMessage());
