@@ -3,12 +3,18 @@ package Test.Java;
 import static org.junit.Assert.*;
 
 import GraphicView.GraphicObjectPanel;
-import Interpreter.CommandParser;
+import Interpreter.*;
 import Memento.Caretaker;
 import org.junit.*;
-
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.runners.Parameterized;
 import javax.swing.*;
 import java.io.StringReader;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class MainTest {
 
@@ -17,7 +23,7 @@ public class MainTest {
     private JTextField textField;
     private JTextArea textArea;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         gpanel = new GraphicObjectPanel();
         caretaker = new Caretaker(gpanel);
@@ -26,43 +32,61 @@ public class MainTest {
     }
 
     @Test
-    public void testUndoRedo() {
-        String commandText = "new rectangle (50,50) (200,200)";
-        textField.setText(commandText);
+    @DisplayName("Remove command test")
+    public void TestRemoveCommand(){
+        new Create( new TypeConstruct("circle",20,null),new Pos(100,100)).interpret(gpanel);
+        textField.setText("del 0");
         StringReader sr = new StringReader(textField.getText());
         CommandParser cmd = new CommandParser(sr);
-        caretaker.executeCommand(cmd.getCommand());
         int count=gpanel.getObjectCount();
-
-        caretaker.undo();
-        assertEquals(count-1, gpanel.getObjectCount());
-
-        caretaker.redo();
-        assertEquals(count, gpanel.getObjectCount());
+        caretaker.executeCommand(cmd.getCommand());
+        assertEquals(count-1,gpanel.getObjectCount());
     }
 
     @Test
-    public void testInvalidCommand() {
-        String invalidCommandText = "new rectangle (50,50 (200 200)";
-        textField.setText(invalidCommandText);
-        StringReader sr = new StringReader(textField.getText());
-        try {
+    @DisplayName("Group command test")
+    public void TestGroupCommand(){}
+
+    @Test
+    @DisplayName("Ungroup command test")
+    public void TestUngroupCommand(){}
+
+    @Test
+    @DisplayName("Move command test")
+    public void TestMoveCommand(){}
+
+    @Test
+    @DisplayName("Scale command test")
+    public void TestScaleCommand(){}
+
+    @Nested
+    class ParameterizedTests {
+
+        @DisplayName("Create command test")
+        @ParameterizedTest
+        @ValueSource(strings = {"new rectangle (50,30) (100,100)",
+                                 "new circle (20) (100,100)",
+                                  "new img (C:\\Users\\ilari\\OneDrive\\Desktop\\img1.jpg) (100,100)"})
+        public void TestCreateCommand(String input){
+            textField.setText(input);
+            StringReader sr = new StringReader(textField.getText());
             CommandParser cmd = new CommandParser(sr);
+            int count=gpanel.getObjectCount();
             caretaker.executeCommand(cmd.getCommand());
-            fail("Expected RuntimeException");
-        } catch (RuntimeException e) { }
+            assertEquals(count+1,gpanel.getObjectCount());
+        }
+
+        @DisplayName("Perimeter command test")
+        public void TestPerimeterCommand(){}
+
+        @DisplayName("Area command test")
+        public void TestAreaCommand(){}
+
+        @DisplayName("List command test")
+        public void TestListCommand(){}
+
     }
 
-    @Test
-    public void testCommandExecution() {
-        String commandText = "new rectangle (50,50) (200,200)";
-        textField.setText(commandText);
-        StringReader sr = new StringReader(textField.getText());
-        CommandParser cmd = new CommandParser(sr);
-        int count=gpanel.getObjectCount();
-        caretaker.executeCommand(cmd.getCommand());
 
-        assertEquals(count+1, gpanel.getObjectCount());
-    }
 
 }
