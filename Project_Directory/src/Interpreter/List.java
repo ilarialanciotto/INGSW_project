@@ -15,7 +15,9 @@ public class List implements Cmd {
 	
 	private int objID=-1;
 	private String mode="";
-	private String info="";
+	private static String info;
+
+	public List(){}
 	
 	public List(int objID) {
 		this.objID=objID;
@@ -27,6 +29,7 @@ public class List implements Cmd {
 	
 	@Override
 	public void interpret(GraphicObjectPanel gpanel) {
+		info="";
 		GraphicObject go=new ID(false).getObject(objID);
 		if(go!=null) {
 			info=go.Information();
@@ -56,5 +59,7 @@ public class List implements Cmd {
 		}
 		else throw new MyException ("object or type not found");
 	}
+
+	public String getInfoShow() { return info; }
 
 }

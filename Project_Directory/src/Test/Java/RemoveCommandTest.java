@@ -1,15 +1,15 @@
 package Test.Java;
 
 import static org.junit.Assert.*;
-
+import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
 import Interpreter.*;
 import Memento.Caretaker;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
-
 import javax.swing.*;
+import java.awt.*;
 import java.io.StringReader;
 import java.util.LinkedList;
 
@@ -31,8 +31,9 @@ public class RemoveCommandTest {
     @Test
     @DisplayName("Remove command test")
     public void TestRemoveCommand(){
-        new Create( new TypeConstruct("circle",20,null),new Pos(100,100)).interpret(gpanel);
-        textField.setText("del 3");
+        new Create( new TypeConstruct("circle",20,null),new Pos(300,300)).interpret(gpanel);
+        GraphicObject go= gpanel.getGraphicObjectAt(new Point(300,300));
+        textField.setText("del " + go.getID());
         StringReader sr = new StringReader(textField.getText());
         CommandParser cmd = new CommandParser(sr);
         int count=gpanel.getObjectCount();
@@ -45,17 +46,22 @@ public class RemoveCommandTest {
     @DisplayName("Remove Group command test")
     public void TestRemoveGroupCommand(){
         new Create( new TypeConstruct("circle",20,null),new Pos(100,100)).interpret(gpanel);
-        new Create( new TypeConstruct("circle",30,null),new Pos(200,300)).interpret(gpanel);
-        LinkedList<Integer> ids = new LinkedList<>(); ids.add(0); ids.add(1);
-        new Group(ids);
+        new Create( new TypeConstruct("circle",30,null),new Pos(200,200)).interpret(gpanel);
+        GraphicObject go1= gpanel.getGraphicObjectAt(new Point(100,100));
+        GraphicObject go2= gpanel.getGraphicObjectAt(new Point(200,200));
+        LinkedList<Integer> idL = new LinkedList<>(); idL.add(go1.getID()); idL.add(go2.getID());
+        LinkedList<GraphicObject> glist = new LinkedList<>();
+        glist.add(go1); glist.add(go2);
+        new Group(idL).interpret(gpanel);
+        int count=gpanel.getObjectCount();
+        int id=new ID(false).getGroupID(glist);
 
-        textField.setText("del 2");
+        textField.setText("del " + id);
         StringReader sr = new StringReader(textField.getText());
         CommandParser cmd = new CommandParser(sr);
-        int count=gpanel.getObjectCount();
         caretaker.executeCommand(cmd.getCommand());
         assertEquals(count-2,gpanel.getObjectCount());
         assertEquals(gpanel.getObjectCount(),new ID(false).getAllObject().size());
-        assertEquals(0,new ID(false).getGroup(2).size());
+        assertEquals(0,new ID(false).getGroup(id).size());
     }
 }

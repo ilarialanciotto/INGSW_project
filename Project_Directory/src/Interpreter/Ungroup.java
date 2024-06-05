@@ -22,7 +22,6 @@ public class Ungroup implements Cmd {
 		for (GraphicObject Go: new ID(false).getGroup(GroupID)){
 			listIDgo.add(Go.getID());
 		}
-		System.out.println(listIDgo);
 	    new ID(true).getGroup(GroupID);
 		System.out.println("Deleted group id: " + GroupID);
 		gpanel.setState(this);

@@ -3,6 +3,8 @@ package Test.Java;
 import GraphicView.GraphicObjectPanel;
 import Interpreter.*;
 import Memento.Caretaker;
+import org.junit.Before;
+import GraphicObject.ID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,13 +33,14 @@ public class MoveCommandTest {
     @Test
     @DisplayName("Move Command Test")
     public void TestRemoveCommand(){
-        new Create( new TypeConstruct("circle",20,null),new Pos(100,100)).interpret(gpanel);
-        textField.setText("mv 3 (200,200)");
-        GraphicObject go=gpanel.getGraphicObjectAt(new Point2D.Double(100,100));
+        new Create( new TypeConstruct("circle",20,null),new Pos(150,100)).interpret(gpanel);
+        GraphicObject g=gpanel.getGraphicObjectAt(new Point2D.Double(150,100));
+
+        textField.setText("mv " + g.getID() + " (100,250)");
         StringReader sr = new StringReader(textField.getText());
         CommandParser cmd = new CommandParser(sr);
         caretaker.executeCommand(cmd.getCommand());
-        assertEquals(new Point2D.Double(200,200),go.getPosition());
+        assertEquals(new Point2D.Double(100,250),g.getPosition());
     }
 
     @Test
@@ -45,13 +48,14 @@ public class MoveCommandTest {
     public void TestRemoveGroupCommand(){
         new Create( new TypeConstruct("circle",20,null),new Pos(100,100)).interpret(gpanel);
         new Create( new TypeConstruct("circle",30,null),new Pos(200,200)).interpret(gpanel);
-        LinkedList<Integer> ids = new LinkedList<>(); ids.add(0); ids.add(1);
-        new Group(ids);
-
         GraphicObject go1=gpanel.getGraphicObjectAt(new Point2D.Double(100,100));
         GraphicObject go2=gpanel.getGraphicObjectAt(new Point2D.Double(200,200));
+        LinkedList<Integer> idL = new LinkedList<>(); idL.add(go1.getID()); idL.add(go2.getID());
+        new Group(idL).interpret(gpanel);
+        LinkedList<GraphicObject> glist = new LinkedList<>();
+        glist.add(go1); glist.add(go2);
 
-        textField.setText("mv 2 (300,300)");
+        textField.setText("mv "+ new ID(false).getGroupID(glist) + " (300,300)");
         StringReader sr = new StringReader(textField.getText());
         CommandParser cmd = new CommandParser(sr);
         caretaker.executeCommand(cmd.getCommand());
