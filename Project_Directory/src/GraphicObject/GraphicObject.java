@@ -48,5 +48,5 @@ public interface GraphicObject {
 
 	GraphicObject copy();
 
-	void setID(int id);
+	void setParameter(int id, Map<Integer, Integer> mapGroup);
 }

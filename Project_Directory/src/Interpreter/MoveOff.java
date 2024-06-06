@@ -24,7 +24,7 @@ public class MoveOff implements Cmd {
 			go.moveTo(go.getPosition().getX()+ x, go.getPosition().getY()+ y);
 		else if(new ID(false).getGroup(ID)!=null )
 			for (GraphicObject goG : new ID(false).getGroup(ID))
-				go.moveTo(goG.getPosition().getX() + x, goG.getPosition().getY()+ y);
+				goG.moveTo(goG.getPosition().getX() + x, goG.getPosition().getY()+ y);
 		else throw new MyException("object or group not fount");
 		gpanel.setState(this);
 	}

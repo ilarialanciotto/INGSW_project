@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class ID {
-	
+
 	private static int id=0;
 	private boolean remove=false;
 
@@ -17,7 +17,7 @@ public class ID {
 		MapGo.put(id, go);
 		id++;
 	}
-	
+
 	public Map<Integer, GraphicObject>getAllObject() { return MapGo; }
 
 	public ID(boolean rem) { remove=rem; }
@@ -25,25 +25,26 @@ public class ID {
 	public ID(LinkedList<GraphicObject> listGroup) {
 		MapGroup.put(id, listGroup);
 		for(GraphicObject go: listGroup) {
-			go.setGroupID(id);
+			if(!go.getGroup().containsValue(id))
+			   go.setGroupID(id);
 		}
 		id++;
 	}
-	
+
 	public Map<Integer,LinkedList<GraphicObject>> getAllGroup(){ return MapGroup; }
-	
+
 	public LinkedList<GraphicObject> getType(String type){
 		TypeList=new LinkedList<>();
 		for(GraphicObject go: MapGo.values()) if(go.getType().equalsIgnoreCase(type)) TypeList.add(go);
 		return TypeList;
 	}
-	
+
 	public int getID(GraphicObject go) {
 		for(Integer id: MapGo.keySet())
-			if(MapGo.get(id)==go) return id;		
+			if(MapGo.get(id)==go) return id;
 		return -1;
 	}
-	
+
 	public GraphicObject getObject(int idObj) {
 		GraphicObject res=MapGo.get(idObj);
 		if(remove) {
@@ -55,8 +56,8 @@ public class ID {
 		}
 		return res;
 	}
-	
-	public LinkedList<GraphicObject> getGroup(int idGroup) { 
+
+	public LinkedList<GraphicObject> getGroup(int idGroup) {
 		LinkedList <GraphicObject> Group=MapGroup.get(idGroup);
 		if(remove) {
 			for (GraphicObject Go: Group) {
@@ -65,26 +66,26 @@ public class ID {
 			}
 			MapGroup.remove(idGroup);
 		}
-		return Group; 
+
+		return Group;
 	}
 
 	public int getGroupID(LinkedList<GraphicObject> listG) {
-		for (Integer ID : MapGroup.keySet()) 
+		for (Integer ID : MapGroup.keySet())
 			if (MapGroup.get(ID).equals(listG)) return ID;
 		return -1;
 	}
 
 	public void add(GraphicObject go) {
-		System.out.println(go);
 		MapGo.put(go.getID(),go);
-			if(go.getGroup().size()>0)
-				for(Integer key: go.getGroup().keySet())
-					if(go.getGroup().get(key)!=-1){
-						System.out.println(MapGroup.get(key)+ " " +go.getGroup());
-						LinkedList<GraphicObject> ListGo=new LinkedList<>();
-						ListGo.add(go);
-						if(MapGroup.get(go.getGroup().get(key))==null)  MapGroup.put(go.getGroup().get(key),ListGo);
-						else MapGroup.get(go.getGroup().get(key)).add(go);
-					}
+		if(go.getGroup().size()>0)
+			for(Integer key: go.getGroup().keySet())
+				if(go.getGroup().get(key)!=-1){
+					System.out.println("add ID " + MapGroup.get(key)+ " " +go.getGroup());
+					LinkedList<GraphicObject> ListGo=new LinkedList<>();
+					ListGo.add(go);
+					if(MapGroup.get(go.getGroup().get(key))==null)  MapGroup.put(go.getGroup().get(key),ListGo);
+					else MapGroup.get(go.getGroup().get(key)).add(go);
+				}
 	}
 }

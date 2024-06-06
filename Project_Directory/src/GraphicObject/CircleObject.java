@@ -68,24 +68,21 @@ public final  class CircleObject extends AbstractGraphicObject {
 		return d;
 	}
 
-	public void setID(int id){
+	public void setParameter(int id,Map<Integer,Integer> Group){
 		this.Id=id;
+		this.MapGroup=Group;
 	}
 
 	@Override
 	public GraphicObject copy() {
 		GraphicObject G=this ;
-		G.setID(Id);
-		G.setGroupID(getIDGroup());
-		for (Integer key : MapGroup.keySet())
-			G.getGroup().put(key, MapGroup.get(key));
+		G.setParameter(Id,MapGroup);
 		return G;
 	}
 
 	@Override
 	public boolean contains(Point2D p) {
 		return (position.distance(p) <= radius);
-
 	}
 
 	@Override

@@ -108,17 +108,16 @@ public final class ImageObject extends AbstractGraphicObject {
 	               "position: " +  getPosition().getX() + "," + getPosition().getY();
 	}
 
-	public void setID(int id){
+	@Override
+	public void setParameter(int id,Map<Integer,Integer> Group){
 		this.Id=id;
+		this.MapGroup=Group;
 	}
 
 	@Override
 	public GraphicObject copy() {
 		GraphicObject G=this ;
-		G.setID(Id);
-		G.setGroupID(getIDGroup());
-		for (Integer key : MapGroup.keySet())
-			G.getGroup().put(key, MapGroup.get(key));
+		G.setParameter(Id,MapGroup);
 		return G;
 	}
 

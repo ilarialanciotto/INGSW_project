@@ -110,20 +110,17 @@ public final class RectangleObject extends AbstractGraphicObject {
 	public Map<Integer,Integer> getGroup() { return MapGroup; }
 
 	@Override
-	public void setID(int id){
+	public void setParameter(int id,Map<Integer,Integer> Group){
 		this.Id=id;
+		this.MapGroup=Group;
 	}
 
 	@Override
 	public GraphicObject copy() {
 		GraphicObject G=this ;
-		G.setID(Id);
-		G.setGroupID(getIDGroup());
-		for (Integer key : MapGroup.keySet())
-			G.getGroup().put(key, MapGroup.get(key));
+		G.setParameter(Id,MapGroup);
 		return G;
 	}
-
 	@Override
 	public void scaleMinus(float factor) {
 		if (factor <= 0)
