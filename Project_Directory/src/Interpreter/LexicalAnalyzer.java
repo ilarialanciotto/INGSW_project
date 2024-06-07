@@ -29,10 +29,7 @@ public class LexicalAnalyzer {
 		input.ordinaryChar(',');
 	}
 
-	public String getString() {
-		return input.sval;
-	}
-
+	public String getString() { return input.sval; }
 	public String toString() {
 		return sb.toString();
 	}
@@ -93,5 +90,4 @@ public class LexicalAnalyzer {
 		}
 		return symbol;
 	}
-
 }

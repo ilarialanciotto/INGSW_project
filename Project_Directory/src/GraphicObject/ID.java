@@ -2,13 +2,13 @@ package GraphicObject;
 
 import java.util.LinkedList;
 import java.util.Map;
+import Exception.MyException;
 import java.util.TreeMap;
 
 public class ID {
 
 	private static int id=0;
 	private boolean remove=false;
-
 	private static Map<Integer, GraphicObject> MapGo=new TreeMap<>();
 	private static Map<Integer,LinkedList<GraphicObject>> MapGroup=new TreeMap<>();
 	private static LinkedList<GraphicObject> TypeList;
@@ -46,7 +46,10 @@ public class ID {
 	}
 
 	public GraphicObject getObject(int idObj) {
-		GraphicObject res=MapGo.get(idObj);
+		GraphicObject res;
+		try{
+			res=MapGo.get(idObj);
+		}catch (NullPointerException e) { return null; }
 		if(remove) {
 			if(res.getGroup().size()>0){
 				for(Integer key: MapGroup.keySet())
@@ -58,7 +61,10 @@ public class ID {
 	}
 
 	public LinkedList<GraphicObject> getGroup(int idGroup) {
-		LinkedList <GraphicObject> Group=MapGroup.get(idGroup);
+		LinkedList <GraphicObject> Group;
+		try{
+			Group =MapGroup.get(idGroup);
+		}catch (NullPointerException e){ return null; }
 		if(remove) {
 			for (GraphicObject Go: Group) {
 				for(Integer key: Go.getGroup().keySet())
@@ -66,7 +72,6 @@ public class ID {
 			}
 			MapGroup.remove(idGroup);
 		}
-
 		return Group;
 	}
 
@@ -78,13 +83,14 @@ public class ID {
 
 	public void add(GraphicObject go) {
 		MapGo.put(go.getID(),go);
-		if(go.getGroup().size()>0)
+		if(go.getGroup().size()>0){
 			for(Integer key: go.getGroup().keySet())
-				if(go.getGroup().get(key)!=-1){
-					LinkedList<GraphicObject> ListGo=new LinkedList<>();
+				if(go.getGroup().get(key)!=-1) {
+					LinkedList<GraphicObject> ListGo = new LinkedList<>();
 					ListGo.add(go);
-					if(MapGroup.get(go.getGroup().get(key))==null)  MapGroup.put(go.getGroup().get(key),ListGo);
+					if (MapGroup.get(go.getGroup().get(key)) == null) MapGroup.put(go.getGroup().get(key), ListGo);
 					else MapGroup.get(go.getGroup().get(key)).add(go);
 				}
+		}
 	}
 }

@@ -37,7 +37,7 @@ public class TypeConstruct implements Cmd {
 			go=new CircleObject(new Point2D.Float(0,0),radius);
 		}
 		else if(GoName.equalsIgnoreCase("img")) {
-			if(!new File(path).exists()) throw new MyException("image not found");
+			if(!new File(path).exists()) throw new IllegalArgumentException("image not found");
 			go = new ImageObject(new ImageIcon(path),new Point2D.Float(0,0));
 		}
 		gpanel.add(go);

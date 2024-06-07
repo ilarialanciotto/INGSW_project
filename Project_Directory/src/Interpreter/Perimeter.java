@@ -7,6 +7,8 @@ import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
 
+import java.util.LinkedList;
+
 public class Perimeter implements Cmd {
 	
 	private int objID=-1;
@@ -24,6 +26,7 @@ public class Perimeter implements Cmd {
 	@Override
 	public void interpret(GraphicObjectPanel gpanel) {
 		GraphicObject go=new ID(false).getObject(objID);
+		LinkedList <GraphicObject> map =new ID(false).getGroup(objID);
 		if (type.equalsIgnoreCase("all")) {
 			for(GraphicObject GO: new ID(false).getAllObject().values()) perimeter+=GO.Perimeter();	
 			JOptionPane.showMessageDialog(gpanel, "All perimeter " + perimeter);
@@ -38,7 +41,7 @@ public class Perimeter implements Cmd {
 			perimeter+=go.Perimeter();
 			JOptionPane.showMessageDialog(gpanel, "Object perimeter " + perimeter);
 		}
-		else if(new ID(false).getGroup(objID).size()>0) {
+		else if(map!=null && map.size()>0) {
 			for (GraphicObject GO: new ID(false).getGroup(objID)) perimeter+=GO.Perimeter();
 			JOptionPane.showMessageDialog(gpanel, "Group perimeter " + perimeter);
 		}

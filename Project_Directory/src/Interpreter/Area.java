@@ -7,6 +7,9 @@ import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
 
+import java.util.LinkedList;
+import java.util.Map;
+
 public class Area implements Cmd {
 
 	private int objID=-1;
@@ -24,11 +27,12 @@ public class Area implements Cmd {
 	@Override
 	public void interpret(GraphicObjectPanel gpanel) {
 		GraphicObject go=new ID(false).getObject(objID);
+		LinkedList<GraphicObject> map=new ID(false).getGroup(objID);
 		if(go!=null) {
 			area+=go.Area();
 			JOptionPane.showMessageDialog(gpanel, "Object area " + area);
 		}
-		else if(new ID(false).getGroup(objID).size()>0) {
+		else if(map!=null && map.size()>0) {
 			for (GraphicObject GO: new ID(false).getGroup(objID)) area+=GO.Area();
 			JOptionPane.showMessageDialog(gpanel, "Group area " + area);
 		}
