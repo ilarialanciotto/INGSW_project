@@ -3,6 +3,8 @@ package Memento;
 import GraphicView.GraphicObjectPanel;
 import Interpreter.Cmd;
 import Exception.MyException;
+
+import javax.swing.*;
 import java.util.Stack;
 
 public class Caretaker {
@@ -18,12 +20,12 @@ public class Caretaker {
     }
 
     public void executeCommand(Cmd command) {
-        Memento memento = gpanel.saveToMemento();
-        command.interpret(gpanel);
-        undoStack.push(memento);
-        commandStack.push(command);
-        redoStack.clear();
-        redoCommandStack.clear();
+       Memento memento = gpanel.saveToMemento();
+       command.interpret(gpanel);
+       undoStack.push(memento);
+       commandStack.push(command);
+       redoStack.clear();
+       redoCommandStack.clear();
     }
 
     public void undo() {

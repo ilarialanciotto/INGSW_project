@@ -3,7 +3,6 @@ package Test.Java;
 import GraphicView.GraphicObjectPanel;
 import Interpreter.*;
 import Memento.Caretaker;
-import org.junit.Before;
 import GraphicObject.ID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -45,7 +44,7 @@ public class MoveCommandTest {
 
     @Test
     @DisplayName("Move Group command test")
-    public void TestRemoveGroupCommand(){
+    public void TestMoveGroupCommand(){
         new Create( new TypeConstruct("circle",20,null),new Pos(100,100)).interpret(gpanel);
         new Create( new TypeConstruct("circle",30,null),new Pos(200,200)).interpret(gpanel);
         GraphicObject go1=gpanel.getGraphicObjectAt(new Point2D.Double(100,100));
@@ -55,7 +54,7 @@ public class MoveCommandTest {
         LinkedList<GraphicObject> glist = new LinkedList<>();
         glist.add(go1); glist.add(go2);
 
-        textField.setText("mv "+ new ID(false).getGroupID(glist) + " (300,300)");
+        textField.setText("mv " + new ID(false).getGroupID(glist) + " (300,300)");
         StringReader sr = new StringReader(textField.getText());
         CommandParser cmd = new CommandParser(sr);
         caretaker.executeCommand(cmd.getCommand());

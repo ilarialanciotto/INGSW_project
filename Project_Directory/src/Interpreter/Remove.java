@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 
-
 public class Remove implements Cmd {
 
 	private int idObj;
@@ -32,7 +31,7 @@ public class Remove implements Cmd {
 				LinkedList <GraphicObject> lisGO=  new ID(false).getGroup(idObj) ;
 				copy=new LinkedList<>(lisGO);
 				for (GraphicObject GO : copy) {
-					GraphicObject copyGo=go.copy();
+					GraphicObject copyGo=GO.copy();
 					removedList.add(copyGo);
 					System.out.println("deleted " + GO.getType() + " id= " + GO.getID());
 					new ID(true).getObject(GO.getID());

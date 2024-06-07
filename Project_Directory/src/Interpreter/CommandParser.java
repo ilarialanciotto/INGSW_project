@@ -192,7 +192,7 @@ public class CommandParser {
     private List list() {
     	waiting(Symbols.LS);
     	if(symbol==Symbols.NUMBER) {
-    		int number=Integer.parseInt(lexer.getString().substring(0,1));
+    		int number=Integer.parseInt(lexer.getString().substring(0,lexer.getString().length()-2));
     		symbol=lexer.nextSymbol();
     		return new List(number);
     	}
@@ -215,7 +215,7 @@ public class CommandParser {
     //<objID>:= un identificatore  
     private int objID() {
         if (symbol == Symbols.NUMBER) { 
-        	int number=Integer.parseInt(lexer.getString().substring(0,1));
+        	int number=Integer.parseInt(lexer.getString().substring(0,lexer.getString().length()-2));
         	symbol=lexer.nextSymbol();
             return number;  
          }

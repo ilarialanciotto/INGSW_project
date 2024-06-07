@@ -60,7 +60,7 @@ public class RemoveCommandTest {
         StringReader sr = new StringReader(textField.getText());
         CommandParser cmd = new CommandParser(sr);
         caretaker.executeCommand(cmd.getCommand());
-        assertEquals(count-2,gpanel.getObjectCount());
+        assertEquals(count-glist.size(),gpanel.getObjectCount());
         assertEquals(gpanel.getObjectCount(),new ID(false).getAllObject().size());
         assertEquals(0,new ID(false).getGroup(id).size());
     }

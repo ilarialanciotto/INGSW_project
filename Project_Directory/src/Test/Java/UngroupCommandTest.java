@@ -50,7 +50,7 @@ public class UngroupCommandTest {
         CommandParser cmd = new CommandParser(sr);
         caretaker.executeCommand(cmd.getCommand());
         assertEquals(count,gpanel.getObjectCount());
-        assertEquals(gpanel.getObjectCount(),new ID(false).getAllObject().size());
+        assertEquals(count,new ID(false).getAllObject().size());
         assertEquals(Groupcount-1,new ID(false).getAllGroup().size());
     }
 
