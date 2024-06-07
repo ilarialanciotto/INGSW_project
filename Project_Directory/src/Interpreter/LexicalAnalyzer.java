@@ -9,6 +9,7 @@ public class LexicalAnalyzer {
 	private StreamTokenizer input;
 	private Symbols symbol;
 	private StringBuilder sb=new StringBuilder(100);
+	private int count=0;
 
 
 	public LexicalAnalyzer(Reader in) {
@@ -18,9 +19,10 @@ public class LexicalAnalyzer {
 		input.eolIsSignificant(false);
 		input.wordChars('a', 'z');
 		input.wordChars('A', 'Z');
+		input.wordChars('0', '9');
+		input.wordChars('.', '.');
 		input.wordChars(':','\\');
 		input.wordChars(':','/');
-		input.parseNumbers();
 		input.whitespaceChars('\u0000', ' ');
 		input.ordinaryChar('(');
 		input.ordinaryChar(')');
@@ -28,10 +30,9 @@ public class LexicalAnalyzer {
 	}
 
 	public String getString() {
-		if(symbol==Symbols.NUMBER) return String.valueOf(input.nval);
 		return input.sval;
 	}
-	
+
 	public String toString() {
 		return sb.toString();
 	}
@@ -65,18 +66,20 @@ public class LexicalAnalyzer {
 						|| input.sval.endsWith(".png")
 						|| input.sval.endsWith(".gif"))
 					    symbol=Symbols.PATH;
-				break;
-			case StreamTokenizer.TT_NUMBER:
-				sb.append(input.nval + " ");
-				symbol = Symbols.NUMBER;
+				else if(input.sval.startsWith("id")
+					    || input.sval.startsWith("g")){
+					    symbol=Symbols.NUMBER;
+				}
+				else if(input.sval.contains("."))
+					symbol=Symbols.NUMBER;
 				break;
 			case '(':
 				sb.append("("  + " ");
-				symbol = Symbols.OPEN_PARENTESIS;
+				symbol = Symbols.OPEN_PARENTHESIS;
 				break;
 			case ')':
 				sb.append(")" + " ");
-				symbol = Symbols.CLOSE_PARENTESIS;
+				symbol = Symbols.CLOSE_PARENTHESIS;
 				break;
 			case ',':
 				sb.append("," + " ");

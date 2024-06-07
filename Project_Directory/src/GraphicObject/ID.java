@@ -81,7 +81,6 @@ public class ID {
 		if(go.getGroup().size()>0)
 			for(Integer key: go.getGroup().keySet())
 				if(go.getGroup().get(key)!=-1){
-					System.out.println("add ID " + MapGroup.get(key)+ " " +go.getGroup());
 					LinkedList<GraphicObject> ListGo=new LinkedList<>();
 					ListGo.add(go);
 					if(MapGroup.get(go.getGroup().get(key))==null)  MapGroup.put(go.getGroup().get(key),ListGo);

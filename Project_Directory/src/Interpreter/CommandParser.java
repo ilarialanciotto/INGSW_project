@@ -46,9 +46,9 @@ public class CommandParser {
   	private TypeConstruct typeconstruct() {
   		if(symbol==Symbols.CIRCLE) {
   			waiting(Symbols.CIRCLE);
-  			waiting(Symbols.OPEN_PARENTESIS);
+  			waiting(Symbols.OPEN_PARENTHESIS);
   			float posfloat=posfloat();
-  			waiting(Symbols.CLOSE_PARENTESIS);
+  			waiting(Symbols.CLOSE_PARENTHESIS);
   			return new TypeConstruct("circle",posfloat,null);
   		}else if(symbol==Symbols.RECTANGLE) {
   			waiting(Symbols.RECTANGLE);
@@ -56,10 +56,10 @@ public class CommandParser {
   			return new TypeConstruct("rectangle",pos);
   		}else if(symbol==Symbols.IMG) {
   			waiting(Symbols.IMG);
-  			waiting(Symbols.OPEN_PARENTESIS);
+  			waiting(Symbols.OPEN_PARENTHESIS);
   			String path=path();
   			symbol=lexer.nextSymbol();
-  			waiting(Symbols.CLOSE_PARENTESIS);
+  			waiting(Symbols.CLOSE_PARENTHESIS);
   			return new TypeConstruct("img",0.0f,path);
   		}
   		else throw new MyException("Unexpected type construct");
@@ -85,18 +85,18 @@ public class CommandParser {
 
     //<pos>::=( <posfloat> , <posfloat> )
     private Pos pos() {
-		waiting(Symbols.OPEN_PARENTESIS);
+		waiting(Symbols.OPEN_PARENTHESIS);
 		float posfloat1=posfloat();
 		waiting(Symbols.COMMA);
 		float posfloat2=posfloat();
-		waiting(Symbols.CLOSE_PARENTESIS);
+		waiting(Symbols.CLOSE_PARENTHESIS);
 		return new Pos(posfloat1,posfloat2);
 	}
     
     //<ungroup>::= ungrp <objID>
     private Ungroup ungroup() {
     	waiting(Symbols.UNGRP);
-    	int objID=objID();
+    	int objID=objID(true);
     	return new Ungroup(objID);
     }
 
@@ -104,7 +104,7 @@ public class CommandParser {
     private Perimeter perimeter() {
     	waiting(Symbols.PERIMETER);
 		if(symbol==Symbols.NUMBER) {
-			int objID=objID();
+			int objID=objID(false);
 			return new Perimeter(objID);
 		}else if(symbol==Symbols.CIRCLE || symbol==Symbols.RECTANGLE || symbol==Symbols.IMG) {
 			String name= lexer.getString();
@@ -121,12 +121,12 @@ public class CommandParser {
     
 	//<listID>::= <objID> { , <objID> }
 	private LinkedList<Integer> listID() {
-		int objID=objID();
+		int objID=objID(false);
 		LinkedList <Integer>listID=new LinkedList<>();
 		listID.add(objID);
 		while(symbol==Symbols.COMMA) {
 			symbol=lexer.nextSymbol();
-			int number=objID();
+			int number=objID(false);
 			listID.add(number);
 		}
 		return listID;
@@ -136,7 +136,7 @@ public class CommandParser {
 	private Area area() {
 		waiting(Symbols.AREA);
 		if(symbol==Symbols.NUMBER) {
-			int objID=objID();
+			int objID=objID(false);
 			return new Area(objID);
 		}else if(symbol==Symbols.CIRCLE || symbol==Symbols.RECTANGLE || symbol==Symbols.IMG) {
 			String name=lexer.getString();
@@ -154,7 +154,7 @@ public class CommandParser {
 	//<remove>::= del <objID>
     private Remove remove() {
         waiting(Symbols.DEL);
-        int idObj = objID();
+        int idObj = objID(false);
         return new Remove(idObj);
     }
     
@@ -168,14 +168,14 @@ public class CommandParser {
     //<move>::= mv <objID> <pos> | mvoff <objID> <pos> 
     private Move move() {
     	waiting(Symbols.MV); 
-    	int objID=objID();
+    	int objID=objID(false);
     	Pos pos=pos();
     	return new Move(objID,pos);
     }
     
     private MoveOff moveoff() {
     	waiting(Symbols.MVOFF); 
-    	int objID=objID();
+    	int objID=objID(false);
     	Pos pos=pos();
     	return new MoveOff(objID,pos);
     }
@@ -183,7 +183,7 @@ public class CommandParser {
     //<scale>::= scale <objID> <posfloat>
     private Scale scale() {
     	waiting(Symbols.SCALE);
-    	int objID=objID();
+    	int objID=objID(false);
     	float posfloat=posfloat();
     	return new Scale(objID,posfloat);
     }
@@ -192,7 +192,7 @@ public class CommandParser {
     private List list() {
     	waiting(Symbols.LS);
     	if(symbol==Symbols.NUMBER) {
-    		int number=Integer.parseInt(lexer.getString().substring(0,lexer.getString().length()-2));
+    		int number=Integer.parseInt(lexer.getString().substring(2,lexer.getString().length()));
     		symbol=lexer.nextSymbol();
     		return new List(number);
     	}
@@ -213,9 +213,11 @@ public class CommandParser {
     }
 
     //<objID>:= un identificatore  
-    private int objID() {
-        if (symbol == Symbols.NUMBER) { 
-        	int number=Integer.parseInt(lexer.getString().substring(0,lexer.getString().length()-2));
+    private int objID(boolean g) {
+        if (symbol == Symbols.NUMBER) {
+			int number;
+			if(g) number=Integer.parseInt(lexer.getString().substring(1,lexer.getString().length()));
+			else number=Integer.parseInt(lexer.getString().substring(2,lexer.getString().length()));
         	symbol=lexer.nextSymbol();
             return number;  
          }
