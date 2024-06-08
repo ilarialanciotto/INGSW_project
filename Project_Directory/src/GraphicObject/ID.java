@@ -66,10 +66,9 @@ public class ID {
 			Group =MapGroup.get(idGroup);
 		}catch (NullPointerException e){ return null; }
 		if(remove) {
-			for (GraphicObject Go: Group) {
+			for (GraphicObject Go: Group)
 				for(Integer key: Go.getGroup().keySet())
-					if(Go.getGroup().get(key)==idGroup) Group.remove(key);
-			}
+					if(Go.getGroup().get(key)==idGroup) Go.getGroup().remove(key);
 			MapGroup.remove(idGroup);
 		}
 		return Group;

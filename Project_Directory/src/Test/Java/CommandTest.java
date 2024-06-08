@@ -18,10 +18,8 @@ import GraphicObject.ID;
 import static org.junit.Assert.assertEquals;
 import java.awt.geom.Point2D;
 import java.awt.geom.Dimension2D;
-import java.util.LinkedList;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Order(1)
 public class CommandTest {
 
     private static GraphicObjectPanel gpanel= new GraphicObjectPanel();
