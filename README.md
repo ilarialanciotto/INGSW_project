@@ -1,6 +1,6 @@
 # INGSW_project
 
-<b> <H1> //Italian <br>
+<b> <H2> //Italian </H2> </b> <br>
 Quesa applicazione gestiste un interprete dei comandi che esegue varie azioni su oggeti quali cerchio,rettangolo e immagine o gruppi di oggetti, alcune di queste azioni perimettono anche undo-redo <br>
 i possibili comandi sono  <br>
 ●	new circle (5.0) (3.1,4.5) <br>
