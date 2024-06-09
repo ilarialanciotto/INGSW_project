@@ -1,7 +1,7 @@
 # INGSW_project
 
-//Italian <br>
-Quesa applicazione gestiste un interprete dei comandi che esegue varie azioni su oggeti quali cerchio,rettangolo e immagine o gruppi di oggetti, alcune di queste azioni perimettono anche undo-redo
+<b> <H1> //Italian <br>
+Quesa applicazione gestiste un interprete dei comandi che esegue varie azioni su oggeti quali cerchio,rettangolo e immagine o gruppi di oggetti, alcune di queste azioni perimettono anche undo-redo <br>
 i possibili comandi sono  <br>
 ●	new circle (5.0) (3.1,4.5) <br>
 crea un cerchio di raggio 5.0 in posizione  (3.1,4.5) e ne restituisce l’ID <br>
@@ -43,7 +43,7 @@ Durante l'invio dei vari comandi se si sbaglia a inserire un comando apparirà u
 
 <br>
 
-//English  <br>
+<b> <H1> //English  <br>
 This application maintains a command interpreter that performs various actions on objects such as circles, rectangles and images or groups of objects, some of these actions also allow undo-redo <br>
 Possible commands are  <br>
 ● New Circle (5.0) (3.1,4.5)  <br>
