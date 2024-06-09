@@ -57,8 +57,7 @@ public class CommandTest {
     @DisplayName("Command test")
     @ParameterizedTest
     @ValueSource(strings = {"ls id0", "perimeter id0" , "scale id0 2.0" ,
-            "area id0" , "grp id0, id1" , "mv id0 (250.0,250.0)" , "mvoff id0 (10.0,10.0)" ,
-            "ungrp g4" ,"del id0" })
+            "area id0" ,"mv id0 (250.0,250.0)" , "mvoff id0 (10.0,10.0)" , "del id0" })
     @Order(2)
     public void TestCommand(String input) {
 
@@ -70,8 +69,6 @@ public class CommandTest {
             g= gpanel.getGraphicObjectAt(new Point2D.Double(100.0, 100.0));
             if (input.startsWith("del")) count=new ID(false).getAllObject().size();
             if(input.startsWith("scale")) oldDimention=g.getDimension();
-            if(input.startsWith("grp " ) || input.startsWith("ungrp"))
-                countGroup=new ID(false).getAllGroup().size();
         }
 
         textField.setText(input);
@@ -107,17 +104,13 @@ public class CommandTest {
             Dimension2D currentDimention= g.getDimension();
             assertEquals(oldDimention.getWidth()*2,currentDimention.getWidth(),0);
             assertEquals(oldDimention.getHeight()*2,currentDimention.getHeight(),0);
-
-        }else if(input.startsWith("grp"))
-            assertEquals(countGroup + 1, new ID(false).getAllGroup().size());
-        else if(input.startsWith("ungrp"))
-            assertEquals(countGroup-1,new ID(false).getAllGroup().size());
+        }
     }
 
     @DisplayName("CommandGroupTest")
     @ParameterizedTest
-    @ValueSource(strings = {"grp id1, id2" , "ls id5", "mv id5 (250.5,250.5)" ,
-                              "scale id5 0.5" , "mvoff id5 (20.0,20.0)", "del id5"})
+    @ValueSource(strings = {"grp id1, id2" , "ls id4", "scale id4 0.5", "mv id4 (250.5,250.5)" ,
+                            "mvoff id4 (20.0,20.0)", "del id4" , "ungrp g4"})
     @Order(3)
     public void TestGroupCommand(String input) {
 
@@ -146,10 +139,10 @@ public class CommandTest {
 
         if(input.startsWith("del")){
             assertEquals(count - 2, new ID(false).getAllObject().size());
-            assertEquals(0,new ID(false).getGroup(5).size());
+            assertEquals(0,new ID(false).getGroup(4).size());
 
         }else if(input.startsWith("ls")){
-            String info="Group id 5\n" +  g.toString() + "\n" + g1.toString() + "\n";
+            String info="Group id 4\n" +  g.toString() + "\n" + g1.toString() + "\n";
             assertEquals(info,new List().getInfoShow());
 
         }else if(input.startsWith("perimeter")){
@@ -181,10 +174,15 @@ public class CommandTest {
             Dimension2D currentDimention1= g1.getDimension();
             assertEquals(oldDimention.getWidth()*0.5,currentDimention.getWidth(),0);
             assertEquals(oldDimention.getHeight()*0.5,currentDimention.getHeight(),0);
-            assertEquals(oldDimention1.getWidth()*0.5,currentDimention.getWidth(),0);
-            assertEquals(oldDimention1.getHeight()*0.5,currentDimention.getHeight(),0);
+            assertEquals(oldDimention1.getWidth()*0.5,currentDimention1.getWidth(),0);
+            assertEquals(oldDimention1.getHeight()*0.5,currentDimention1.getHeight(),0);
 
-        }else if(input.startsWith("grp"))
+        }else if(input.startsWith("grp")){
             assertEquals(countGroup + 1, new ID(false).getAllGroup().size());
+        }
+        else if(input.startsWith("ungrp")){
+            assertEquals(countGroup - 1, new ID(false).getAllGroup().size());
+            assertEquals(count, new ID(false).getAllObject().size());
+        }
     }
 }

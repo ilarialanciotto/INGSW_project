@@ -37,7 +37,7 @@ public final  class CircleObject extends AbstractGraphicObject {
 	public float Perimeter() { return (float) (2*radius*Math.PI); }
 	
 	@Override 
-	public float Area() { return (float)(Math.pow(Math.PI, 2)*radius); }
+	public float Area() { return (float)(Math.pow(radius, 2)*Math.PI); }
 
 	@Override
 	public Point2D getPosition() {

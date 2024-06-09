@@ -15,8 +15,8 @@ public class ImageObjectView implements GraphicObjectView {
 		Dimension2D dim = io.getDimension();
 		Point2D position = io.getPosition();
 		Image image = io.getImage();
-		int w = (int) (dim.getWidth());
-		int h = (int) (dim.getHeight());
+		int w = (int) (dim.getWidth())/4;
+		int h = (int) (dim.getHeight())/4;
 		int x = (int) (position.getX()) - w / 2;
 		int y = (int) (position.getY()) - h / 2;
 		g.drawImage(image, x, y, w, h, null);

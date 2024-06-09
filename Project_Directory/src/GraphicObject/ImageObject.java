@@ -43,8 +43,8 @@ public final class ImageObject extends AbstractGraphicObject {
 
 	@Override
 	public boolean contains(Point2D p) {
-		double w = (factor * image.getWidth(null)) / 2;
-		double h = (factor * image.getHeight(null)) / 2;
+		double w = (factor * image.getWidth(null)/4) /2;
+		double h = (factor * image.getHeight(null)/4) /2;
 		double dx = Math.abs(p.getX() - position.getX());
 		double dy = Math.abs(p.getY() - position.getY());
 		return dx <= w && dy <= h;

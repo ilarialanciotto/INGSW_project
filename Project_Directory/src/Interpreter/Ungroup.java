@@ -22,7 +22,6 @@ public class Ungroup implements Cmd {
 		this.gpanel=gpanel;
 		if (flag) GroupID++;
 		LinkedList <GraphicObject> map = new ID(false).getGroup(GroupID);
-		System.out.println(map + " idG " + GroupID);
 		if(map!=null){
 			for (GraphicObject Go: map) listIDgo.add(Go.getID());
 			new ID(true).getGroup(GroupID);
