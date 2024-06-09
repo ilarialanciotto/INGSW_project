@@ -4,6 +4,7 @@ import GraphicObject.GraphicObjectPanel;
 import Interpreter.CommandParser;
 import Memento.Caretaker;
 import javax.swing.*;
+import Exception.MyException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,36 +28,42 @@ public class MiniCAD {
         MiniWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MiniWindow.setResizable(false);
         MiniWindow.setMaximizedBounds(frame.getBounds());
-        JTextArea textAreaW = new JTextArea();
-        textAreaW.setEditable(false);
-        MiniWindow.add(textAreaW);
 
         final GraphicObjectPanel gpanel=new GraphicObjectPanel();
         gpanel.setPreferredSize(new Dimension(500, 400));
+
+        JTextArea textArea=new JTextArea();
+        textArea.setEnabled(false);
+        textArea.setDisabledTextColor(new Color(0xFF000000, true));
+        frame.add(textArea, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        frame.getContentPane().add(scrollPane);
+
+        JTextArea textAreaW = new JTextArea();
+        textAreaW.setEditable(false);
+        MiniWindow.add(textAreaW);
+        JScrollPane scrollPane1 = new JScrollPane(textAreaW);
+        scrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        MiniWindow.getContentPane().add(scrollPane1);
+
+        Caretaker caretaker=new Caretaker(gpanel,textAreaW);
+        JPanel panel=new JPanel();
         JToolBar toolbar = new JToolBar();
         toolbar.setFloatable(false);
         JButton undoButt = new JButton("Undo");
         JButton redoButt = new JButton("Redo");
 
-        Caretaker caretaker=new Caretaker(gpanel,textAreaW);
-        JPanel panel=new JPanel();
+        JTextField textField = new JTextField();
+        frame.add(textField, BorderLayout.SOUTH);
 
         toolbar.add(undoButt);
         toolbar.add(redoButt);
 
         panel.add(toolbar,BorderLayout.NORTH);
         panel.add(gpanel,BorderLayout.CENTER);
+
         frame.add(panel, BorderLayout.NORTH);
-
-        JTextArea textArea=new JTextArea();
-        textArea.setPreferredSize(new Dimension(500,100));
-        textArea.setEnabled(false);
-
-        textArea.setDisabledTextColor(new Color(0xFF000000, true));
-        frame.add(textArea, BorderLayout.CENTER);
-
-        JTextField textField = new JTextField();
-        frame.add(textField, BorderLayout.SOUTH);
 
         textField.addActionListener(new ActionListener() {
             @Override
@@ -75,11 +82,25 @@ public class MiniCAD {
             }
         });
 
-        undoButt.addActionListener(evt -> caretaker.undo());
-        redoButt.addActionListener(evt -> caretaker.redo());
+        undoButt.addActionListener(evt -> {
+            try{
+                caretaker.undo();
+            }catch(MyException e ){
+                JOptionPane.showMessageDialog(gpanel,e.getMessage());
+            }
+        });
+
+        redoButt.addActionListener(evt -> {
+            try{
+                caretaker.redo();
+            }catch(MyException e ){
+                JOptionPane.showMessageDialog(gpanel,e.getMessage());
+            }
+        });
 
         MiniWindow.pack();
         MiniWindow.setVisible(true);
+
         frame.pack();
         frame.setVisible(true);
     }
