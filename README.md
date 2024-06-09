@@ -1,6 +1,6 @@
 # INGSW_project
 
-<b> <h2> Italian </h2> </b> 
+<b> <h2> ITALIAN </h2> </b> 
 <i> Quesa applicazione gestiste un interprete dei comandi che esegue varie azioni su oggeti quali cerchio,rettangolo e immagine o gruppi di oggetti, alcune di queste azioni perimettono anche undo-redo </i> <br>
 i possibili comandi sono  <br>
 ●	new circle (5.0) (3.1,4.5) <br>
@@ -41,7 +41,7 @@ calcola la somma dei perimetri degli oggetti di tipo rectangle    <br>
 calcola la somma delle aree di tutti gli oggetti.   <br>
 <i>Durante l'invio dei vari comandi se si sbaglia a inserire un comando apparirà un messaggio di errore e la cronologia dei comandi precedenti verrà cancellata dalla schermata e bisognerà reinserire il comando corretto.Se invece non sono presenti oggetti o gruppi potrebbe apparire un messaggio di errore di object or group not found oppure nel caso di ls circle / groups verrà visualizzata una finestra vuota , mentre nel caso di area o perimetro verrà visualizzato area / perimetro = 0 . La creazione o rimozione di gruppi di oggetti invece verrà viasualizzata nella seconda finestra  </i>
 
-<b> <h2> //English </h2> </b> 
+<b> <h2> ENGLISH </h2> </b> 
 <i> This application maintains a command interpreter that performs various actions on objects such as circles, rectangles and images or groups of objects, some of these actions also allow undo-redo </i> <br>
 Possible commands are  <br>
 ● New Circle (5.0) (3.1,4.5)  <br>
