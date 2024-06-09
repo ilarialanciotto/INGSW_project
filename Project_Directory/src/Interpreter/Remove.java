@@ -4,9 +4,8 @@ import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
+import javax.swing.*;
 import java.util.LinkedList;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class Remove implements Cmd {
 
@@ -15,14 +14,15 @@ public class Remove implements Cmd {
 	private GraphicObject go;
 	private LinkedList<GraphicObject> copy;
 	private LinkedList<GraphicObject> removedList=new LinkedList<>();
-
+	private JTextArea textArea;
 
 	public Remove(int idObj) {
 		this.idObj=idObj;
 	}
 
 	@Override
-	public void interpret(GraphicObjectPanel gpanel) {
+	public void interpret(GraphicObjectPanel gpanel, JTextArea textArea) {
+		this.textArea=textArea;
 		this.gpanel=gpanel;
 		go=new ID(false).getObject(idObj);
 		if(go==null){
@@ -33,7 +33,8 @@ public class Remove implements Cmd {
 				for (GraphicObject GO : copy) {
 					GraphicObject copyGo=GO.copy();
 					removedList.add(copyGo);
-					System.out.println("deleted " + GO.getType() + " id= " + GO.getID());
+					String input= "deleted " + GO.getType() + " id= " + GO.getID() + "\n";
+					textArea.append(input);
 					new ID(true).getObject(GO.getID());
 					gpanel.remove(GO);
 				}
@@ -42,7 +43,8 @@ public class Remove implements Cmd {
 		else {
 			GraphicObject copyGo=go.copy();
 			removedList.add(copyGo);
-			System.out.println("deleted " + go.getType() + " id= " + idObj );
+			String input= "deleted " + go.getType() + " id= " + idObj + "\n";
+			textArea.append(input);
 			new ID(true).getObject(idObj);
 			gpanel.remove(go);
 		}

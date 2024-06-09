@@ -1,11 +1,7 @@
 package Interpreter;
 
 import java.util.LinkedList;
-import java.util.Map;
-
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
+import javax.swing.*;
 import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
@@ -28,7 +24,7 @@ public class List implements Cmd {
 	}
 	
 	@Override
-	public void interpret(GraphicObjectPanel gpanel) {
+	public void interpret(GraphicObjectPanel gpanel, JTextArea textArea) {
 		info="";
 		GraphicObject go=new ID(false).getObject(objID);
 		if(go!=null) {

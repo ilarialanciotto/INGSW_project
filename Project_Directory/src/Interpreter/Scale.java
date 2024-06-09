@@ -4,6 +4,7 @@ import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
+import javax.swing.*;
 
 public class Scale implements Cmd {
 	
@@ -18,7 +19,7 @@ public class Scale implements Cmd {
 	}
 
 	@Override
-	public void interpret(GraphicObjectPanel gpanel) {
+	public void interpret(GraphicObjectPanel gpanel, JTextArea textArea) {
 		if(go==null) 
 			if(new ID(false).getGroup(ID)==null ) throw new MyException("object or group not fount");
 			else for (GraphicObject goG : new ID(false).getGroup(ID)) goG.scale(factor);

@@ -2,8 +2,7 @@ package Interpreter;
 
 import java.awt.geom.Point2D;
 import java.io.File;
-import javax.swing.ImageIcon;
-import Exception.MyException;
+import javax.swing.*;
 import GraphicObject.CircleObject;
 import GraphicObject.GraphicObject;
 import GraphicObject.ImageObject;
@@ -29,7 +28,7 @@ public class TypeConstruct implements Cmd {
 	}
 
 	@Override
-	public void interpret(GraphicObjectPanel gpanel) {
+	public void interpret(GraphicObjectPanel gpanel, JTextArea textArea) {
 		if(GoName.equalsIgnoreCase("rectangle")) { 
 			go=new RectangleObject(new Point2D.Float(0,0),date.getX(),date.getY());
 		}

@@ -1,12 +1,10 @@
 package Interpreter;
 
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
 import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
-
 import java.util.LinkedList;
 
 public class Perimeter implements Cmd {
@@ -24,7 +22,7 @@ public class Perimeter implements Cmd {
 	}
 
 	@Override
-	public void interpret(GraphicObjectPanel gpanel) {
+	public void interpret(GraphicObjectPanel gpanel, JTextArea textArea) {
 		GraphicObject go=new ID(false).getObject(objID);
 		LinkedList <GraphicObject> map =new ID(false).getGroup(objID);
 		if (type.equalsIgnoreCase("all")) {

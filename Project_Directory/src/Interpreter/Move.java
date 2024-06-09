@@ -4,9 +4,8 @@ import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
-import javax.swing.text.Position;
+import javax.swing.*;
 import java.awt.geom.Point2D;
-import java.util.LinkedList;
 
 public class Move implements Cmd {
 
@@ -23,7 +22,7 @@ public class Move implements Cmd {
 	}
 
 	@Override
-	public void interpret(GraphicObjectPanel gpanel) {
+	public void interpret(GraphicObjectPanel gpanel, JTextArea textArea) {
 		if(go==null) 
 			if(new ID(false).getGroup(ID)==null ) throw new MyException("object or group not fount");
 			else {

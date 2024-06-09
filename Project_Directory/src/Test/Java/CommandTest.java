@@ -25,7 +25,7 @@ public class CommandTest {
     private static GraphicObjectPanel gpanel= new GraphicObjectPanel();
     private Caretaker caretaker;
     private JTextField textField;
-    private JTextArea textArea;
+    private JTextArea textArea, textAreaW= new JTextArea();
     private  GraphicObject g,g1;
     private int count,countGroup;
     private Point2D oldPosition,oldPosition1;
@@ -33,7 +33,7 @@ public class CommandTest {
 
     @BeforeEach
     public void setUp() {
-        caretaker = new Caretaker(gpanel);
+        caretaker = new Caretaker(gpanel,textAreaW);
         textField = new JTextField();
         textArea = new JTextArea();
     }

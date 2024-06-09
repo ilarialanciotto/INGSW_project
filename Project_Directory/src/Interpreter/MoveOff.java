@@ -4,6 +4,7 @@ import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
 import GraphicView.GraphicObjectPanel;
+import javax.swing.*;
 
 public class MoveOff implements Cmd {
 	
@@ -19,7 +20,7 @@ public class MoveOff implements Cmd {
 	}
 
 	@Override
-	public void interpret(GraphicObjectPanel gpanel) {
+	public void interpret(GraphicObjectPanel gpanel, JTextArea textArea) {
 		if(go!=null)
 			go.moveTo(go.getPosition().getX()+ x, go.getPosition().getY()+ y);
 		else if(new ID(false).getGroup(ID)!=null )

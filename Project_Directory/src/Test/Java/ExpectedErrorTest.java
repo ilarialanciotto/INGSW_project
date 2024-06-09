@@ -33,7 +33,7 @@ public class ExpectedErrorTest {
     public void SetUpCreate(){
         new Create(
                 new TypeConstruct("circle", 10.0f,null),
-                new Pos(100.0f,100.0f)).interpret(gpanel);
+                new Pos(100.0f,100.0f)).interpret(gpanel, textArea);
     }
 
     @DisplayName("Should not be operation when id object or group doesn't exist ")
