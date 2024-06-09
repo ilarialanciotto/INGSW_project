@@ -1,16 +1,14 @@
-package GraphicView;
+package GraphicObject;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
-import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JComponent;
-import GraphicObject.GraphicEvent;
-import GraphicObject.*;
+
 import Interpreter.Cmd;
 import Memento.Memento;
 
@@ -59,8 +57,7 @@ public class GraphicObjectPanel extends JComponent implements GraphicObjectListe
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		for (GraphicObject go : objects) {
-			GraphicObjectView view = GraphicObjectViewFactory.FACTORY.createView(go);
-			view.drawGraphicObject(go, g2);
+			go.drawGraphicObject(go,g2);
 		}
 	}
 

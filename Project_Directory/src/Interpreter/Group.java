@@ -4,11 +4,11 @@ import java.util.LinkedList;
 import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 import javax.swing.*;
 
 public class Group implements Cmd {
-	
+
 	private LinkedList<GraphicObject>listGraphicObject;
 	private int idGroup;
 	private GraphicObjectPanel gpanel;

@@ -1,5 +1,6 @@
 package GraphicObject;
 
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
@@ -8,6 +9,8 @@ import java.util.Map;
 public interface GraphicObject {
 	
 	int getID();
+
+	void drawGraphicObject(GraphicObject go, Graphics2D g);
 
 	void addGraphicObjectListener(GraphicObjectListener l);
 

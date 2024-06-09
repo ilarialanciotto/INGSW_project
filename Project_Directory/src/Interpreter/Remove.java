@@ -3,7 +3,7 @@ package Interpreter;
 import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 import javax.swing.*;
 import java.util.LinkedList;
 

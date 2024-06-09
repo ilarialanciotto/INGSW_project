@@ -1,7 +1,8 @@
 package GraphicObject;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.geom.Dimension2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.Map;
@@ -23,7 +24,18 @@ public final  class CircleObject extends AbstractGraphicObject {
 		radius = r;
 		Id=new ID(this).getID(this);
 	}
-	
+
+	@Override
+	public void drawGraphicObject(GraphicObject go, Graphics2D g) {
+		CircleObject co = (CircleObject) go;
+		Point2D position = co.getPosition();
+		double r = co.getRadius();
+		double x = position.getX() - r;
+		double y = position.getY() - r;
+		g.draw(new Ellipse2D.Double(x, y, r * 2.0, r * 2.0));
+
+	}
+
 	@Override
 	public void moveTo(Point2D p) {
 		position.setLocation(p);

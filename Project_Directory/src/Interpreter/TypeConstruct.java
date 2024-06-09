@@ -3,11 +3,12 @@ package Interpreter;
 import java.awt.geom.Point2D;
 import java.io.File;
 import javax.swing.*;
+
 import GraphicObject.CircleObject;
 import GraphicObject.GraphicObject;
 import GraphicObject.ImageObject;
 import GraphicObject.RectangleObject;
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 
 public class TypeConstruct implements Cmd {
 

@@ -2,7 +2,7 @@ package Interpreter;
 
 import java.awt.geom.Point2D;
 import GraphicObject.GraphicObject;
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 import javax.swing.*;
 
 public class Create implements Cmd {
@@ -12,7 +12,7 @@ public class Create implements Cmd {
 	private GraphicObject go;
 	private GraphicObjectPanel gpanel;
 	private JTextArea textArea;
-	
+
 	public Create(TypeConstruct typecnstruct, Pos pos) {
 		this.typecnstruct=typecnstruct;
 		this.pos=pos;

@@ -1,11 +1,13 @@
 package Interpreter;
 
 import java.util.LinkedList;
+
 import javax.swing.*;
+
 import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 
 public class List implements Cmd {
 	

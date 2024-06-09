@@ -1,7 +1,7 @@
 package Test.Java;
 
 import GraphicObject.GraphicObject;
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 import Interpreter.CommandParser;
 import Interpreter.List;
 import Memento.Caretaker;

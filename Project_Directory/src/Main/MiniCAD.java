@@ -1,9 +1,6 @@
 package Main;
 
-import GraphicObject.CircleObject;
-import GraphicObject.ImageObject;
-import GraphicObject.RectangleObject;
-import GraphicView.*;
+import GraphicObject.GraphicObjectPanel;
 import Interpreter.CommandParser;
 import Memento.Caretaker;
 import javax.swing.*;
@@ -50,10 +47,6 @@ public class MiniCAD {
         panel.add(toolbar,BorderLayout.NORTH);
         panel.add(gpanel,BorderLayout.CENTER);
         frame.add(panel, BorderLayout.NORTH);
-
-        GraphicObjectViewFactory.FACTORY.installView(RectangleObject.class, new RectangleObjectView());
-        GraphicObjectViewFactory.FACTORY.installView(CircleObject.class, new CircleObjectView());
-        GraphicObjectViewFactory.FACTORY.installView(ImageObject.class, new ImageObjectView());
 
         JTextArea textArea=new JTextArea();
         textArea.setPreferredSize(new Dimension(500,100));

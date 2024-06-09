@@ -1,6 +1,6 @@
 package Test.Java;
 
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 import Interpreter.CommandParser;
 import Interpreter.Create;
 import Interpreter.Pos;
@@ -23,7 +23,7 @@ public class ExpectedErrorTest {
 
     @BeforeEach
     public void setUp() {
-        caretaker = new Caretaker(gpanel);
+        caretaker = new Caretaker(gpanel,new JTextArea());
         textField = new JTextField();
         textArea = new JTextArea();
     }

@@ -1,10 +1,12 @@
 package Interpreter;
 
 import javax.swing.*;
+
 import Exception.MyException;
 import GraphicObject.GraphicObject;
 import GraphicObject.ID;
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
+
 import java.util.LinkedList;
 
 public class Area implements Cmd {

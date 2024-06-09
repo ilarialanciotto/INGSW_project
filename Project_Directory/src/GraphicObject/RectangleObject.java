@@ -1,8 +1,9 @@
 package GraphicObject;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -26,6 +27,16 @@ public final class RectangleObject extends AbstractGraphicObject {
 		this.h=h;
 		position = new Point2D.Double(pos.getX(), pos.getY());
 		Id=new ID(this).getID(this);
+	}
+
+	@Override
+	public void drawGraphicObject(GraphicObject go, Graphics2D g) {
+		Point2D position = go.getPosition();
+		Dimension2D dim = go.getDimension();
+		double x = position.getX() - dim.getWidth() / 2.0;
+		double y = position.getY() - dim.getHeight() / 2.0;
+		g.draw(new Rectangle2D.Double(x, y, dim.getWidth(), dim.getHeight()));
+
 	}
 	
 	@Override

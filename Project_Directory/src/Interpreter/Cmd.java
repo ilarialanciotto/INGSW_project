@@ -1,13 +1,13 @@
 package Interpreter;
 
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
+
 import javax.swing.*;
 
 public interface Cmd {
 
-	void interpret(GraphicObjectPanel gpanel, JTextArea textArea);
+	public void interpret(GraphicObjectPanel gpanel, JTextArea textArea);
 
     default void undo(){};
-
 }
 

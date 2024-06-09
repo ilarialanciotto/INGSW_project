@@ -1,7 +1,6 @@
 package GraphicObject;
 
-import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
@@ -48,6 +47,19 @@ public final class ImageObject extends AbstractGraphicObject {
 		double dx = Math.abs(p.getX() - position.getX());
 		double dy = Math.abs(p.getY() - position.getY());
 		return dx <= w && dy <= h;
+	}
+
+	@Override
+	public void drawGraphicObject(GraphicObject go, Graphics2D g) {
+		ImageObject io = (ImageObject) go;
+		Dimension2D dim = io.getDimension();
+		Point2D position = io.getPosition();
+		Image image = io.getImage();
+		int w = (int) (dim.getWidth())/4;
+		int h = (int) (dim.getHeight())/4;
+		int x = (int) (position.getX()) - w / 2;
+		int y = (int) (position.getY()) - h / 2;
+		g.drawImage(image, x, y, w, h, null);
 	}
 
 	@Override

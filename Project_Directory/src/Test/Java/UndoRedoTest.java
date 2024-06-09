@@ -1,7 +1,7 @@
 package Test.Java;
 
 import GraphicObject.ID;
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 import Interpreter.CommandParser;
 import Memento.Caretaker;
 import org.junit.jupiter.api.*;
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UndoRedoTest {
 
-    private static GraphicObjectPanel gpanel= new GraphicObjectPanel();;
+    private static GraphicObjectPanel gpanel= new GraphicObjectPanel();
     private Caretaker caretaker;
     private JTextField textField;
     private JTextArea textArea;

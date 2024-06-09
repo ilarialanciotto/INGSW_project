@@ -1,10 +1,9 @@
 package Memento;
 
-import GraphicView.GraphicObjectPanel;
+import GraphicObject.GraphicObjectPanel;
 import Interpreter.Cmd;
 import Exception.MyException;
 import javax.swing.*;
-import java.awt.*;
 import java.util.Stack;
 
 public class Caretaker {
@@ -14,7 +13,7 @@ public class Caretaker {
     private Stack<Cmd> commandStack = new Stack<>();
     private Stack<Cmd> redoCommandStack = new Stack<>();
     private GraphicObjectPanel gpanel;
-    private JTextArea textArea;
+    private JTextArea textArea=new JTextArea();
 
     public Caretaker(GraphicObjectPanel gpanel) {
         this.gpanel = gpanel;
@@ -22,16 +21,16 @@ public class Caretaker {
 
     public Caretaker(GraphicObjectPanel gpanel,JTextArea textArea) {
         this(gpanel);
-        this.textArea=textArea;
+        if(textArea != null)  this.textArea=textArea;
     }
 
     public void executeCommand(Cmd command) {
-       Memento memento = gpanel.saveToMemento();
-       command.interpret(gpanel,textArea);
-       undoStack.push(memento);
-       commandStack.push(command);
-       redoStack.clear();
-       redoCommandStack.clear();
+        Memento memento = gpanel.saveToMemento();
+        command.interpret(gpanel,textArea);
+        undoStack.push(memento);
+        commandStack.push(command);
+        redoStack.clear();
+        redoCommandStack.clear();
     }
 
     public void undo() {
