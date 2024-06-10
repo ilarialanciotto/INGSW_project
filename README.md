@@ -40,7 +40,7 @@ calcola la somma dei perimetri degli oggetti di tipo rectangle    <br>
 ●	area all   <br>
 calcola la somma delle aree di tutti gli oggetti.   <br>
 <i>Durante l'invio dei vari comandi se si sbaglia a inserire un comando o si inseriscono oggetti o gruppi che non esistono apparirà un messaggio di errore e la cronologia dei comandi precedenti verrà cancellata dalla schermata. Se invece non sono presenti oggetti o gruppi nel caso di ls (tipoOggetto) / groups verrà visualizzata una riga vuota , mentre nel caso di area o perimetro verrà visualizzato 
-area / perimetro = 0 che insieme alla visualizzazione del comando di create o remove verranno visualizzati nella seconda finestra </i>
+area / perimetro = 0 che insieme alla visualizzazione del comando di create o remove verranno visualizzati nella seconda finestra . I numeri delle varie dimensioni o raggio del cerchio non possono essere pari a 0 o negativi, la posizione degli oggetti non può essere negativa. </i>
 
 <b> <h2> ENGLISH </h2> </b> 
 <i> This application maintains a command interpreter that performs various actions on objects such as circles, rectangles and images or groups of objects, some of these actions also allow undo-redo </i> <br>
@@ -81,4 +81,4 @@ Calculates the area of the object identified by ID1 or the sum of the areas of t
 Calculates the sum of the perimeters of rectangle objects   <br>
 ● All Area    <br>
 Calculates the sum of the areas of all objects.   <br>
-<i> During the sending of the various commands, if you make a mistake in entering a command or insert objects or groups that do not exist, an error message will appear and the history of previous commands will be deleted from the screen. If, however, there are no objects or groups present, in the case of ls (typeObject) / groups an empty line will be displayed, while in the case of area or perimeter it will be displayed area / perimeter = 0 which together with the display of the create or remove command will be displayed in the second window </i>
+<i> During the sending of the various commands, if you make a mistake in entering a command or insert objects or groups that do not exist, an error message will appear and the history of previous commands will be deleted from the screen. If, however, there are no objects or groups present, in the case of ls (typeObject) / groups an empty line will be displayed, while in the case of area or perimeter it will be displayed area / perimeter = 0 which together with the display of the create or remove command will be displayed in the second window. The numbers of the various dimensions or radius of the circle cannot be equal to 0 or negative, the position of the objects cannot be negative</i>
