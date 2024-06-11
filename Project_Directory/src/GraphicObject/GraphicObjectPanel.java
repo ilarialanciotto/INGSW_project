@@ -78,10 +78,6 @@ public class GraphicObjectPanel extends JComponent implements GraphicObjectListe
 		this.state = state;
 	}
 
-	public Cmd getState() {
-		return state;
-	}
-
 	public Memento saveToMemento() {
 		return new Memento(state);
 	}
