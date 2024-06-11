@@ -80,7 +80,7 @@ public class CommandTest {
             assertEquals(count - 1, new ID(false).getAllObject().size());
 
         }else if(input.startsWith("ls")){
-            String info=g.Information();
+            String info=g.Information() + "\n";
             assertEquals(info,new List().getInfoShow());
 
         }else if(input.startsWith("perimeter")){

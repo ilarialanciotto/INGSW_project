@@ -69,13 +69,6 @@ public final class ImageObject extends AbstractGraphicObject {
 	}
 
 	@Override
-	public ImageObject clone() {
-		ImageObject cloned = (ImageObject) super.clone();
-		cloned.position = (Point2D) position.clone();
-		return cloned;
-	}
-
-	@Override
 	public Point2D getPosition() {
 		return new Point2D.Double(position.getX(), position.getY());
 	}

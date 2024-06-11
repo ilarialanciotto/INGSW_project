@@ -84,14 +84,6 @@ public final class RectangleObject extends AbstractGraphicObject {
 	}
 
 	@Override
-	public RectangleObject clone() {
-		RectangleObject cloned = (RectangleObject) super.clone();
-		cloned.position = (Point2D) position.clone();
-		cloned.dim = (Dimension2D) dim.clone();
-		return cloned;
-	}
-
-	@Override
 	public String getType() {
 		return "Rectangle";
 	}

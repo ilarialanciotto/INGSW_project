@@ -4,7 +4,7 @@ package GraphicObject;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractGraphicObject implements GraphicObject, Cloneable {
+public abstract class AbstractGraphicObject implements GraphicObject {
 
 	private  List<GraphicObjectListener> listeners = new LinkedList<>();
 
@@ -23,17 +23,6 @@ public abstract class AbstractGraphicObject implements GraphicObject, Cloneable 
 	protected void notifyListeners(GraphicEvent e) {
 		for (GraphicObjectListener gol : listeners)
 			gol.graphicChanged(e);
-	}
-
-	@Override
-	public GraphicObject clone() {
-		try {
-			AbstractGraphicObject go = (AbstractGraphicObject) super.clone();
-			go.listeners = new LinkedList<>();
-			return go;
-		} catch (CloneNotSupportedException e) {
-			throw new Error(e);
-		}
 	}
 
 }
