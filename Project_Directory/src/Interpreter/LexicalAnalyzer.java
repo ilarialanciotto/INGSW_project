@@ -9,8 +9,6 @@ public class LexicalAnalyzer {
 	private StreamTokenizer input;
 	private Symbols symbol;
 	private StringBuilder sb=new StringBuilder(100);
-	private int count=0;
-
 
 	public LexicalAnalyzer(Reader in) {
 
@@ -23,6 +21,7 @@ public class LexicalAnalyzer {
 		input.wordChars('.', '.');
 		input.wordChars(':','\\');
 		input.wordChars(':','/');
+		input.wordChars('-', '_');
 		input.whitespaceChars('\u0000', ' ');
 		input.ordinaryChar('(');
 		input.ordinaryChar(')');
@@ -58,7 +57,8 @@ public class LexicalAnalyzer {
 				else if(input.sval.equalsIgnoreCase("rectangle")) symbol=Symbols.RECTANGLE;
 				else if(input.sval.equalsIgnoreCase("img")) symbol=Symbols.IMG;
 				else if (input.sval.endsWith(".jpg") 
-						|| input.sval.contains("/") 
+						|| input.sval.contains("/")
+						|| input.sval.contains("_")
 						|| input.sval.endsWith(".jpeg") 
 						|| input.sval.endsWith(".png")
 						|| input.sval.endsWith(".gif"))

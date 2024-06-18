@@ -42,7 +42,7 @@ public class CommandTest {
     @ParameterizedTest
     @ValueSource(strings = {"new rectangle (50.0,30.0) (100.0,100.0)",
             "new circle (20.0) (200.0,200.0)",
-            "new img (C:\\Users\\ilari\\OneDrive\\Desktop\\img1.jpg) (300.0,300.0)",
+            "new img (Project_Directory/src/IMAGE/img1.jpg) (300.0,300.0)",
             "new circle (10.0) (150.0,150.0)"})
     @Order(1)
     public void TestCreateCommand(String input) {

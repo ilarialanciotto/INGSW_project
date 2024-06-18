@@ -35,7 +35,7 @@ public class List_Perimeter_AreaCommandTest {
     @ParameterizedTest
     @ValueSource(strings = {"new rectangle (50.0,30.0) (100.0,100.0)",
             "new circle (20.0) (200.0,200.0)",
-            "new img (C:\\Users\\ilari\\OneDrive\\Desktop\\img1.jpg) (300.0,300.0)",
+            "new img (Project_Directory/src/IMAGE/img1.jpg) (300.0,300.0)",
             "new circle (10.0) (150.0,150.0)", "new rectangle (50.0,50.0) (250.0,250.0)",
             "new rectangle (70.0,40.0) (350.0,350.5)" , "grp id0,id1" , "grp id2,id3" , "grp id4,id5" ,
              "grp id6,id7,id8"})

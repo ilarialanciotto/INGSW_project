@@ -53,9 +53,8 @@ public class ExpectedErrorTest {
     @DisplayName("Should not be operation when unexpected command ")
     @ParameterizedTest
     @ValueSource(strings = {"create rectangle(50.0,50.0) (140.5,120.0)"  ,
-                            "new circle (10.0) (-144.0,166.5)" ,
-                              "mv id0 (320,140)", "mvoff id0 (-10.0,-10.0)" ,
-                           "new rectangle (-50.0,40.0) (200.0,166.0)" , "scale id0 -2.0"})
+                              "mv id0 (320,140)" , "new circle (20.0) (100.0,100.0)," +
+                               "grp 0,1" + "ungrp id1" })
     public void ExceptionUnexpectedCommand(String input) {
         textField.setText(input);
         StringReader sr = new StringReader(textField.getText());
@@ -68,13 +67,15 @@ public class ExpectedErrorTest {
     @DisplayName("Should not be operation when parameters are malformed")
     @ParameterizedTest
     @ValueSource(strings = {"new circle (0.0) (144.0,166.5)",
-                            "new img (pippo.jpg) (100.0,200.0)",
-                            "new rectangle (0.0,0.0) (200.0,166.0)", " scale id0 0.0"})
+                           "new circle (10.0) (-144.0,166.5)" ,
+                            "mvoff id0 (-10.0,-10.0)" ,
+                           "new rectangle (-50.0,40.0) (200.0,166.0)" , "scale id0 -2.0" ,
+                            "new img (pippo.jpg) (100.0,200.0)", " scale id0 0.0"})
     public void ExceptionCommandMalformed(String input) {
         textField.setText(input);
         StringReader sr = new StringReader(textField.getText());
-        CommandParser cmd = new CommandParser(sr);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            CommandParser cmd = new CommandParser(sr);
             caretaker.executeCommand(cmd.getCommand());
         });
     }
